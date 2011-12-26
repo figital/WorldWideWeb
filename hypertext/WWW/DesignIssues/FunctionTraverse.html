@@ -1,0 +1,73 @@
+<TITLE>FunctionTraverse -- /DesignIssues</TITLE>
+<NEXTID 1>
+<ADDRESS>Last changed 92.06.30 RC
+</ADDRESS>
+<H1>Link Traversing</H1>
+<H2>Normal documents</H2>Traversing a link will normally result in the display of the document
+identified by the UDI at the tail anchor. However, there are two exceptions:
+forward documents and elaborated documents.
+<H2>Forward documents </H2>There are two reasons for having forward documents:<P>
+1) a document is moved; the forward document has the old UDI and contains
+the new UDI.<P>
+2) a document is generic, eg. "This month's report"; the forward document
+has a published UDI and contains the UDI of the currently relevant
+document.
+<H3>Case 1:</H3>Situation: document X (existing) at location (a) references document
+D (the one we want) in location (b). Document N  (new) at location
+(a) is a newly created one.<P>
+Document D is moved to location (c). A forward document F replaces
+it at (b). F contains "(c).D" and itself must have UDI "(b).D"<P>
+(a UDI has the form x.y.z... where some of the dots could actually
+be slashes, but this is not relevant here).<P>
+When the browser at (a) follows the link from X, it references "(b).D"
+The server at (b) will now have to return the response "forward to
+(c).D", and it must do so from knowledge stored at (b). It could keep
+a list or any other record that D has moved, but in our model we will
+use the file system, by adding an extension: document F is in the
+file "D.html.f", the server looks for "D.html" first, then tries "D.html.f"
+and thereby knows that D does exist after all. The browser gets the
+information about D's true location, and automatically gets it. Although
+the server could get D, this should not be done because there could
+be a chain of forwards and the server would have to pass the browser's
+profile along it, maybe finding out-of-date servers on the way. The
+browser should follow the chain (at no extra cost in number of exchanges).<P>
+At (a) the user has D represented, and makes a link to it from N.
+The anchor will contain "(c).D" viz. the UDI of the real D.<P>
+If there is a long chain of forwards, then UDIs get substituted until
+the end of the chain is reached.
+<H3>Case 2:</H3>Situation: At location (c) exists a set of documents, JA (January),
+FE (February), MA (March) etc. At location (b) exists a document T
+(this month's report) which contains the UDI of this month's report,
+which happens to be "(c).MA". Document X (existing) at location (a)
+references document T  by "(b).T". Document N  (new) at location (a)
+is a newly created one.<P>
+The mechanism of getting at (c).MA and displaying it can be the same
+as for case 1, but document T is not like F of case 1: if the user
+wants to put a link to this month's report in N, (s)he would be very
+surprised if this link always referred to (c).MA. Instead, this link
+should continue to refer to T, so that it really is "this month's
+report" and not "March". Therefore, a different extension should be
+used for T, for example "g" instead of "f", and the server's response
+is different.<P>
+There may be a chain of forward documents with a generic in the middle,
+and as soon as the browser finds such a response, it sticks to that
+UDI rather than continuing to substitute UDIs.<P>
+[Note:can anyone think of a useful case of a chain of generics?]
+<H2>Elaborated documents</H2>An elaborated document contains a possibly arbitrarily complex algorithm
+for constructing the information to be displayed. Like a forward document,
+when a link to an elaborated document is followed, the algorithm is
+executed and the result is returned. Whereas a forward document uses
+the WWW built-in mechanisms to get at the contents, the elaborated
+document is designed to use external software to do the job. <P>
+In general, the algorithm makes sense only at the server's site, and
+the server will have to (a) recognise that the requested document
+is to be constructed by elaboration of the algorithm and (b) start
+and possibly control the software doing the construction.<P>
+There are two issues:<P>
+1) how to construct and edit the algorithm using WWW,<P>
+2) how to make external software execute the algorithm.<P>
+Editing can only be done by using an option in the browser whereby
+the author of the elaborated document addresses it with a specific
+request to return the algorithm, not the result. This is a special
+request to the server<P>
+<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau> RC</A>

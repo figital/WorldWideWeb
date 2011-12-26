@@ -1,0 +1,84 @@
+<TITLE>Preference_Setting -- /WWW</TITLE>
+<NEXTID 3>
+<H1>Preference Setting</H1>In the previous version of the browser some values could only be set
+either at compile time, by defining macros, or a run-time, using command
+line option.  This update allows preferences to be set in five ways:
+<UL>
+<LI>during program operation,
+<LI>command-line argument,
+<LI>saved file of preferences,
+<LI>environment variable,
+<LI>compile-time macro.
+</UL>The setable preferences are:
+<DL>
+<DT>Screen height:
+<DT>
+<DD>default value: 24
+<DT>
+<DD>compile-time macro: SCREEN_HEIGHT
+<DT>
+<DD>environment variable: WWW_SCREEN_HEIGHT
+<DT>
+<DD>command-line: -DWWW_SCREEN_HEIGHT
+<DT>Screen width:
+<DT>
+<DD>default value: 79
+<DT>
+<DD>compile-time macro: SCREEN_WIDTH
+<DT>
+<DD>environment variable: WWW_SCREEN_WIDTH
+<DT>
+<DD>command-line: -DWWW_SCREEN_WIDTH
+<DT>Homepage:
+<DT>
+<DD>default value: "file:/usr/local/lib/WWW/default.html"
+<DT>
+<DD>compile-time macro: DEFAULT_ADDRESS
+<DT>
+<DD>environment variable: WWW_HOME
+<DT>
+<DD>command-line: [filename]
+<DT>Log file:
+<DT>
+<DD>default value: None
+<DT>
+<DD>compile-time macro: DEFAULT_LOGFILE
+<DT>
+<DD>environment variable: WWW_LOGFILE
+<DT>
+<DD>command-line: -DWWW_LOGFILE
+<DT>News server:
+<DT>
+<DD>default value: "news"
+<DT>
+<DD>compile-time macro: DEFAULT_NEWS_HOST
+<DT>
+<DD>environment variable: WWW_NEWS_SERVER / NNTPSERVER
+<DT>
+<DD>command-line: -D
+<DT>Auto-retry on errors (see <A NAME=1 HREF=New_Resp_Handle.html>handling of additional document types</A> ):
+<DT>
+<DD>default value: YES
+<DT>
+<DD>compile-time macro: DEFAULT_AUTORETRY
+<DT>
+<DD>environment variable: WWW_AUTORETRY
+<DT>
+<DD>command-line: -DWWW_AUTORETRY
+<DT>Acceptable Formats: (See <A NAME=2 HREF=Format_Handling.html>Format Handing</A> )
+</DL>
+
+<H3>Using the on-screen preference setting</H3>In order to get into this mode, type "preferences" during normal browser
+operation.  You will then be presented with a list of setable preferences.
+To set a particular preference, type the number which precedes the
+name, followed by a space, followed by the value, and then return.<P>
+When you set the log file, the old one is immediately closed (if one
+was being used).  If you enter "NONE", then no new one will be opened.<P>
+If you wish to save the preferences, you can use the 'save' command.
+Without any additional argument, the command will attempt to write
+over the previously used preferences file (as specifed by the -d option).
+If none was specified, you will be asked for a file name.<P>
+If you wish to use a different file, follow the word save with the
+file name to be used.<P>
+To load a set of preferences, the procedure is the same, except type
+'load'. ______________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#11> CTB</A></A>

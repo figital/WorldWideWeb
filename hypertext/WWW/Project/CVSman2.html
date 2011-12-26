@@ -1,0 +1,33 @@
+<TITLE>CVSman2 -- /Project</TITLE>
+<NEXTID 17>
+<H1>CVS Commands</H1>Here (finally) are details on all the cvs commands and the options
+each accepts. The summary lines at the top of each command's description
+highlight three kinds of things:<P>
+Command Options and Argument<P>
+Special options are described in detail below; common command options
+may appear only in the summary line.<P>
+Working Directory, or Repository?<P>
+Some cvs commands require a working directory to operate; some require
+a repository. Also, some commands change the repository, some change
+the working directory, and some change nothing.<P>
+Synonyms<P>
+Many commands have synonyms, which you may find easier to remember
+(or type) than the principal name.
+<DL>
+<DT><A NAME=1 HREF=CVSadd.html>add</A> [ k kflag] [ m 'message'] files...
+<DT><A NAME=2 HREF=CVSadmin.html>admin</A> [rcs options] files...
+<DT><A NAME=16 HREF=CVScheckout.html>checkout</A> [options] modules...
+<DT>[files ...] <A NAME=3 HREF=CVScommit.html>commit </A>[ lnR] [ m 'log_message' | -f file] [ r revision]
+<DT>[files...] <A NAME=4 HREF=CVSdiff.html>diff </A>[ kl] [rcsdiff_options] [[ r rev1 | -D date1] [
+r rev2 | -D date2]]
+<DT><A NAME=5 HREF=CVSexport.html>export</A> [ flNnQq] -r rev| D date [ d dir] module...
+<DT><A NAME=6 HREF=CVShistory.html>history</A> [ report] [ flags] [ options args] [files...]
+<DT><A NAME=7 HREF=CVSimport.html>import</A> [ options] repository vendortag releasetag...
+<DT><A NAME=8 HREF=CVSlog.html>log</A> [ l] rlog options [files...]
+<DT><A NAME=9 HREF=CVSrdiff.html>rdiff</A> [ flags] [ V vn] [ r t| D d [ r t2| D d2]] modules...
+<DT><A NAME=10 HREF=CVSrelease.html>release</A> [ dQq] modules...
+<DT><A NAME=11 HREF=CVSremove.html>remove</A> [ lR] [files...]
+<DT>modules... <A NAME=12 HREF=CVSrtag.html>rtag</A> [ falnRQq] [ b] [ d] [ r tag | -D date] symbolic_tag
+<DT><A NAME=13 HREF=CVSstatus.html>status</A> [ lR] [ v] [files...]
+<DT><A NAME=14 HREF=CVStag.html>tag</A> [ lQqR] [ b] [ d] symbolic_tag [files...]
+<DT><A NAME=15 HREF=CVSupdate.html>update</A> [ AdflPpQqR] [ d] [ r tag| D date] files...<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau> RC</A>

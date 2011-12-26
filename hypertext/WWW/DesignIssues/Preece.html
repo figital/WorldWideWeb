@@ -1,0 +1,57 @@
+<TITLE>Preece -- /DesignIssues</TITLE>
+<NEXTID 4>
+<H1>Scott Preece on retrieval</H1>
+<ADDRESS>3  Oct 91
+</ADDRESS>(See <A NAME=1 HREF=TracingLinks.html>tracing</A>, <A NAME=3 HREF=Navigation.html>Navigation</A>)<P>
+My own "vision" of information retrieval models the whole database
+as<P>
+a network of objects.  Some of the objects are words, some of them
+are<P>
+index terms (from a controlled vocabulary), some of them are documents
+some of them are pieces of documents, some of them are authors, etc.
+There are also typed links between nodes in the graph -- words are
+connected to documents by occurrence links, words are tied to words
+by dictionary links, document pieces are tied to documents by "is
+section of" links, etc.  Searching then becomes a process of turning
+some of the nodes on, then turning on the nodes attached to them by
+certain kinds of links, and so forth.<P>
+So a dictionary expansion of the query works by activating a set of
+terms and then following all the dictionary links from those terms
+to other terms; a "search" works by activating a set of terms, then
+following all the occurrence links to the documents they appear in;
+relevance feedback works by starting with a set of activated documents
+and following the links back to the terms that occur in them.<P>
+If you use appropriate rules for calculating the level of activation
+of a node you can implement many of the similarity functions that
+have been reported in the literature and do a pretty effective job
+of seaching. For instance, suppose you have a term node which is activated
+with a<P>
+weight of 1.  Suppose the spreading rule is that the weight is split
+among all the occurrence links leading from it to documents and the<P>
+combining rule is that all weights coming into a node are summed.
+ Then after one spreading cycle each active document will have a weight
+equal to the sum of the inverse frequency of the terms in contains,
+which is a pretty reasonable search strategy.  One enhancement is
+to have each link also weighted -- for term occurrence links it makes
+sense for that weight to be the number of occurrences of the term
+in the document.<P>
+It is true that doing this effectively requires doubly inverting the
+database, so that each document points to all its terms as well as
+vice versa, although you can finesse that by encoding the document
+as a list of terms rather than as Ascii text, with a slightly higher
+cost of<P>
+rebuilding the text when you need to display the document.<P>
+[My dissertation, describing this in excruciating detail, is *A Spreading
+Activation Model for Information Retrieval*, University of Illinois,
+1981.  You might be able to get it from University Microfilms if you're
+really interested.  If you're at Thinking Machines, Dave Waltz had
+a copy once, but may well have shed it in the last decade.  The machine
+readable form, alas, no longer exists (it lived on a long-dead PDP10)]<P>
+scott
+<XMP>--
+scott preece
+motorola/mcg urbana design center	1101 e. university, urbana, il   61801
+uucp:	uunet!uiucuxc!udc!preece,	 arpa:	preece@urbana.mcd.mot.com
+phone:	217-384-8589			  fax:	217-384-8550
+</XMP>
+

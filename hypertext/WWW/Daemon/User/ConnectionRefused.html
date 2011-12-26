@@ -1,0 +1,22 @@
+<TITLE>ConnectionRefused -- /User</TITLE>
+<NEXTID 2>
+<H1>"Connection Refused"</H1>The browser tries to connect to the daemon but gets this status in
+the trace. <P>
+This means that noone was listening on that port number. Check the
+port numbers match btween server and client.  Make sure you specify
+the port number explicitly in the document address for www.<P>
+If you are running the daemon without the inet daemon, (with the -a
+option) then try running it from the terminal with -v as well.  The
+trace for the server should say "socket, bind and listen all ok".
+If it does, and you still get "connection refused", then you must
+be talking to the wrong host (or, conceivably, different ethernet
+adapters on the same host)<P>
+If you are running with the inet daemon, then check both the services
+file (/etc/service) or database (yellow pages, netinfo) if your system
+uses it,  and the /etc/inetd.conf file. Check the service name matches
+between these two.<P>
+Did you remember to kill -HUP the inet daemon when you changed the
+inted.conf file?<P>
+Try <A NAME=1 HREF=DebugServer.html>running the deamon from a shell window</A> to see what happens better.
+<ADDRESS><A NAME=0 HREF=http://info.cern.ch./hypertext/TBL_Disclaimer.html>Tim BL</A>
+</ADDRESS>

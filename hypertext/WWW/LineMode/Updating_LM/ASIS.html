@@ -1,0 +1,20 @@
+<TITLE>ASIS -- /Updating_LM</TITLE>
+<NEXTID 3>
+<H1>ON ASIS: updating the repository</H1><A NAME=1 HREF=http://asis01.cern.ch:80/>ASIS</A> is the software repository.  To update things (LMB only at the
+moment) on ASIS, for each machine architecture, xxxx, first do the
+make on the <A NAME=2 HREF=../Updating_LM.html>appropriate machine</A> , then on ASIS:
+<XMP>cd  hypertext/WWW/LineMode/Implementation/xxxx
+nsu c-www
+make asis
+^D
+
+</XMP>This copies the stuff into the right system-specific directory, SO
+LONG AS the Makefile contains a line defining the ASIS directory.
+The AIS dirctories have a structure hardware/operating_system, for
+example
+<XMP>		/asis/specific/hardware/operating_system/usr.local/bin
+
+</XMP>etc.  The bit hardware/operating_system is defined in the Makefile
+<XMP>			ASIS_MACH = sgi/iris-3.5
+
+</XMP>which is NOT SET UP YET except for sun4, sgi, rs6000

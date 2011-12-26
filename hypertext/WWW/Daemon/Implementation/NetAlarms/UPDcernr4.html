@@ -1,0 +1,46 @@
+<TITLE>HOW TO MAKE UPDATES ON CERNR4</TITLE>
+
+CERNR4 is intended for use as an X25router connector node for VXCRNA
+(and possibly for other nodes running PSI Access software). It is also
+a router for area 23 and should therefore always be up and running -
+only occassional reboots to modify the configuration are tolerated.
+<XMP>
+
+        Responsible:    John Ogilvie, CN/CS
+        Backup:         Denise Heagerty, CN/CS
+
+</XMP>
+Below is a recipe for modifying the CERNR4 configuration:
+<XMP>
+   Note: Most of the commands below can be executed on either UXCOMS,
+         VXGIFT or UXCSB1. However, to downline load the new image
+         to CERNR4 you must be logged in to UXCSB1.
+
+</XMP>
+<UL>
+<LI>1. Make sure the symbols defined in decnet$cernr4:cernr4_symbols.com
+   are defined on your system (e.g. by defining them in your login.com).
+<LI>2. Type "cernr4" so that you change your default directory
+<LI>3. Edit the relevant files in this directory to make the changes you
+   require. Use comments (preceeded by "!") to explain the modifications.
+<LI>4. Type "cernr4_config" to enter the configuration program for the
+   permanent data base. After the prompt, execute any command files
+   that you changed and then exit.   e.g.
+<XMP>
+
+       X25ROUPERM> @dte.com
+       X25ROUPERM> exit
+
+</XMP>
+   You have now updated the permanent data base. Note that you can check
+   your changes by using the 'SHOW' command before you exit.
+<LI>5. Type "cernr4_copy" to copy the permanent data to the backup copy on UXDDB1.(This is only possible from VXGIFT::OGILVIE and UXCOMS::OGILVIE and 
+    UXCSB1::OGILVIE, in an emergency the Operations Group should have
+    sufficient privileges to help. The file to be copied is<P>
+    sys$common:[decserver]x25cernr4.sys).
+<LI>6. Type "cernr4_load" to download the updated permanent data base to CERNR4.This command can only be executed on UXCSB1 since this is the only
+CS cluster machine configured to allow down-line loading.
+<LI>7. To check that the new configuration is loaded correctly, type<P>
+$ mc ncp tell cernr4 show ....
+</UL>
+

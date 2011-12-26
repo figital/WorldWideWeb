@@ -1,0 +1,37 @@
+<TITLE>RCSmerge -- /Project</TITLE>
+<NEXTID 1>rcsmerge - merge RCS revisions
+<H1></H1>Synopsis<P>
+rcsmerge -rrev1 [ -rrev2 ] [ -p ] file<P>
+Description<P>
+Rcsmerge incorporates the changes between rev1 and rev2 of an RCS
+file into the corresponding working file. If -p is given, the result
+is printed on the standard output, otherwise the result overwrites
+the working file.<P>
+A file name ending in ',v' is an RCS file name, otherwise a working
+file name. Merge derives the working file name from the RCS file name
+and vice versa, as explained in co(1L). A pair consisting of both
+an RCS and a working file name may also be specified.<P>
+Rev1 may not be omitted. If rev2 is omitted, the latest revision on
+the default branch (normally the highest branch on the trunk) is assumed.
+Both rev1 and rev2 may be given numerically or symbolically.<P>
+Rcsmerge prints a warning if there are overlaps, and delimits the
+overlapping regions as explained in co -j. The command is useful for
+incorporating changes into a checked-out revision.<P>
+Examples<P>
+Suppose you have released revision 2.8 of f.c. Assume furthermore
+that you just completed revision 3.4, when you receive updates to
+release 2.8 from someone else. To combine the updates to 2.8 and your
+changes between 2.8 and 3.4, put the updates to 2.8 into file f.c
+and execute<P>
+rcsmerge -p -r2.8 -r3.4 f.c >f.merged.c<P>
+Then examine f.merged.c. Alternatively, if you want to save the updates
+to 2.8 in the RCS file, check them in as revision 2.8.1.1 and execute
+co -j:<P>
+ci -r2.8.1.1 f.c<P>
+co -r3.4 -j2.8:2.8.1.1 f.c<P>
+As another example, the following command undoes the changes between
+revision 2.4 and 2.8 in your currently checked out revision in f.c.<P>
+rcsmerge -r2.8 -r2.4 f.c<P>
+Note the order of the arguments, and that f.c will be overwritten.<P>
+Bugs<P>
+Rcsmerge does not work on files that contain lines with a single '.'.

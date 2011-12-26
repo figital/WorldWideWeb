@@ -1,0 +1,91 @@
+<TITLE>RCSrcsfile -- /Project</TITLE>
+<NEXTID 1>rcsfile - format of RCS file
+<H1></H1>Description<P>
+An RCS file is an ASCII file. Its contents are described by the grammar
+below. The text is free format, i.e., spaces, tabs and new lines have
+no significance except in strings. Strings are enclosed by '@'. If
+a string contains a '@', it must be doubled.<P>
+The meta syntax uses the following conventions: '|' (bar) separates
+alternatives; '{' and '}' enclose optional phrases; '{' and '}*' enclose
+phrases that may be repeated zero or more times; '{' and '}+' enclose
+phrases that must appear at least once and may be repeated; '<' and
+'>' enclose nonterminals.<P>
+<rcstext>	::=	<admin> {<delta>}* <desc> {<deltatext>}*<P>
+<admin>	::=	head {<num>}; <P>
+		branch {<num>};<P>
+		access {<id>}*;<P>
+		symbols {<id> : <num>}*;<P>
+		locks {<id> : <num>}*;<P>
+		comment {<string>};<P>
+<delta>	::=	<num><P>
+		date <num>;	<P>
+		author <id>;<P>
+		state {<id>};<P>
+		branches {<num>}*;<P>
+		next {<num>};<P>
+<desc>	::=	desc <string><P>
+<deltatext>	::=	<num><P>
+		log <string><P>
+		text <string><P>
+<num>	::=	{<digit>{.}}+<P>
+<digit>	::=	0 | 1 | ... | 9<P>
+<id>	::=	<letter>{<idchar>}*<P>
+<letter>	::=	A | B | ... | Z | a | b | ... | z<P>
+<idchar>	::=	Any printing ASCII character except space, tab, <P>
+		carriage return, new line, and <special>.<P>
+<special>	::=	; | : | , | @<P>
+<string>	::=	@{any ASCII character, with '@' doubled}*@<P>
+Identifiers are case sensitive. Keywords are in lower case only. The
+sets of keywords and identifiers may overlap.<P>
+The <delta> nodes form a tree. All nodes whose numbers consist of
+a single pair (e.g., 2.3, 2.1, 1.3, etc.) are on the "trunk", and
+are linked through the next field in order of decreasing numbers.
+The head field in the <admin> node points to the head of that sequence
+(i.e., contains the highest pair). The branch node in the admin node
+indicates the default branch (or revision) for most RCS operations.
+If empty, the default branch is the highest branch on the trunk.<P>
+All <delta> nodes whose numbers consist of 2n fields (n>2) (e.g.,
+3.1.1.1, 2.1.2.2, etc.) are linked as follows. All nodes whose first
+(2n)-1 number fields are identical are linked through the next field
+in order of increasing numbers. For each such sequence, the <delta>
+node whose number is identical to the first 2(n-1) number fields of
+the deltas on that sequence is called the branchpoint. The branches
+field of a node contains a list of the numbers of the first nodes
+of all sequences for which it is a branchpoint. This list is ordered
+in increasing numbers.<P>
+   Example:<P>
+                                Head<P>
+                                  |<P>
+                                  |<P>
+                                  v<P>
+                              ---------<P>
+        / \          / \      |       |      / \           / \<P>
+       /   \        /   \     |  2.1  |     /   \         /   \<P>
+      /     \      /     \    |       |    /     \      /       \<P>
+     /1.2.1.3\    /1.3.1.1\   |       |   /1.2.2.2\   /1.2.2.1.1.1\<P>
+     ---------    ---------   ---------   ---------   -------------<P>
+         ^            ^           |           ^             ^<P>
+         |            |           |           |             |<P>
+         |            |           v           |             |<P>
+        / \           |       ---------      / \            |<P>
+       /   \          |       \  1.3  /     /   \           |<P>
+      /     \         ---------\     /     /     \-----------<P>
+     /1.2.1.1\                  \   /     /1.2.2.1\<P>
+     ---------                   \ /      ---------<P>
+         ^                        |           ^<P>
+         |                        |           |<P>
+         |                        v           |<P>
+         |                    ---------       |<P>
+         |                    \  1.2  /       |<P>
+         ----------------------\     /---------<P>
+                                \   /<P>
+                                 \ /<P>
+                                  |<P>
+                                  |<P>
+                                  v<P>
+                              ---------<P>
+                              \  1.1  /<P>
+                               \     /<P>
+                                \   /<P>
+                                 \ /<P>
+                             Fig. 1: A revision tree

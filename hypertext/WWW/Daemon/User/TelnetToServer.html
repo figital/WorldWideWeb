@@ -1,0 +1,19 @@
+<TITLE>TelnetToServer -- /User</TITLE>
+<NEXTID 2>
+<H1>Telnetting to a server</H1>Most implementations of telnet allow you to specify a port number.
+Under unix this is often just a second parameter, under VMS a /PORT
+option.<P>
+The <A NAME=1 HREF=../../Protocols/HTTP/AsImplemented.html>HTTP protocol</A> is a telnet protocol, so you can simulate it just
+by typing things in.  This will help you to see exactly what a sending
+back, and it will check you that it really is the server not the browser
+which has a problem.<P>
+Here is an example. (You type "telnet..." and  "GET ...").
+<XMP>	> telnet myhost.domain 80
+	Connected to myhost.domain on port 80
+	Escape is ^[
+	GET /documentname
+	<PLAINTEXT>
+	Document name "/documentname" invalid.
+
+</XMP>
+<ADDRESS><A NAME=0 HREF=http://info.cern.ch./hypertext/TBL_Disclaimer.html>Tim BL</A></A><P>

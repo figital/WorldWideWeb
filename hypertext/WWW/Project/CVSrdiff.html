@@ -1,0 +1,34 @@
+<TITLE>CVSrdiff -- /Project</TITLE>
+<NEXTID 1>
+<H1>rdiff [ flags] [ V vn] [ r t| D d [ r t2| D d2]] modules...</H1>Requires:	repository.<P>
+Changes:	nothing.<P>
+Synonym:	patch<P>
+Builds a Larry Wall format patch(1) file between two releases, that
+can be fed directly into the patch program to bring an old release
+up to date with the new release. (This is one of the few cvs commands
+that operates directly from the repository, and doesn't require a
+prior checkout.) The diff output is sent to the standard output device.
+You can specify (using the standard -r and -D options) any combination
+of one or two revisions or dates. If only one revision or date is
+specified, the patch file reflects differences between that revision
+or date and the current "head" revisions in the RCS file.<P>
+Note that if the software release affected is contained in more than
+one directory, then it may be necessary to specify the -p option to
+the patch command when patching the old sources, so that patch is
+able to find the files that are located in other directories.<P>
+If you use the option -V vn, RCS keywords are expanded according to
+the rules current in RCS version vn (the expansion format changed
+with RCS version 5).<P>
+The standard option flags -f, -l, -Q, and -q are available with this
+command. There are also several special options flags:<P>
+If you use the -s option, no patch output is produced. Instead, a
+summary of the files changed or added between the two releases is
+sent to the standard output device. This is useful for finding out,
+for example, which files have changed between two dates or revisions.<P>
+If you use the -t option, a diff of the top two revisions is sent
+to the standard output device. This is most useful for seeing what
+the last change to a file was.<P>
+If you use the -u option, the patch output uses the newer "unidiff"
+format for context diffs.<P>
+You can use -c to explicitly specify the 'diff -c' form of context
+diffs (which is the default), if you like.

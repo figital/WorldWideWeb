@@ -1,0 +1,113 @@
+<TITLE>HTML Writing Guidelines</TITLE>
+
+<H1><A NAME=top>HTML Extremes</A></H1>
+
+These are a little tricky, and might break some quick-and-dirty
+implementations. But they must be parsed correctly by all minimally
+conforming WWW implementations.<P>
+
+Some of these constructs are markup errors which are not handled
+correctly by various browsers.<P>
+
+These constructs are not recommended.<P>
+
+<H2>Text Elements</H2>
+
+<H2>Tags</H2>
+
+<H3    
+   >The tags for this element have spaces in them.</H3			>
+Just in case it missed the H3 close tag: </H3>
+
+<H3>Names</H3>
+
+A name  should be a letter followed by letter and/or numbers. Case is not significant.<p>
+
+<H4>h4 with different case in start and end tags</h4>
+
+<H2>Normal Text Content</H2>
+
+<H3>Delimiter Recognition</H3>
+
+Character reference: '&#SPACE;' and &#200; and '&#foo;'. The last one
+is an error.
+
+And character as data: &, and as markup: &amp;.<P>
+And-hash as data: &# and as markup &amp;#.<P>
+
+Less-thans as data: < <1 <-)<P>
+
+Less-than-slash as data: </ </1 </-)<P>
+
+greater-than (pretty much always data): > abc> 0><P>
+
+comment: <!-- foo I'm a comment!--> The sample implementation
+groks.<P>
+
+comment w/space between -- and &gt;: <!-- comment w/space -- 	><P>
+
+marked section close without mdc: ]].
+
+
+markup declaration: <!foo I'm an error!> The sample implementation
+treats it as a processing instrcution, so you don't see it.<P>
+
+processing instruction: <?bold lkjsdf > The sample implementation
+treats it as a processing instrcution, so you don't see it.<P>
+
+
+<H2>Literal Text Content</H2>
+
+Doesn't expand entities in RCDATA sections:<P>
+
+<XMP>
+Here's the full closing tag: &lt;/XMP&gt;
+</XMP>
+
+<XMP>
+<!-- this would be a comment in PCDATA. It's data in RCDATA. -->
+
+<! this would be an markup delcaration, which would be an
+error in PCDATA. It's data in RCDATA.>
+
+<start> tags are fine!
+& as long as it's not followed by a letter or '#', it's fine!
+&# is even ok, unless it's followed by a letter or a number.
+</XMP>
+
+ Line breaks are significant, and characters are rendered in a fixed-width font to preserve horizontal formatting. <P>
+
+<XMP>
+This is literal text with tabs.		THESE	        words
+should line up under			THESE		words.
+
+ </XMP>
+
+<H2>Other Elements</H2>
+
+<H3>TITLE</H3>
+
+The TITLE can actually be as long as you like. It can have all the
+'&gt;' you want too. It just can't have the ETAGO
+delimiter-in-context, that is "&lt;/" followed by a letter. '&amp;'
+should be avoided, so that entities can be treated uniformly
+throughout HTML.
+
+<H2>Anchors</H2>
+
+<A HREF="#top">name implied</A><P>
+
+<A NAME=xyz>HREF implied</A><P>
+
+<A HREF="#top" NAME=xyz1>HREF before name</A><P>
+
+<A HREF = "#top" NAME = xyz2>spaces around '='</A><P>
+
+<A HREF='spec.html'>single quoted value</A><P>
+
+<A HREF="system:cat&#SPACE;&gt;&#SPACE;file">character references
+and entity references in attribute value literal</A><P>
+
+<A NAME=xyz HREF="#xyz">ID already in use</A>
+
+</BODY>

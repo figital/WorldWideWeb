@@ -1,0 +1,35 @@
+<TITLE>CVSrtag -- /Project</TITLE>
+<NEXTID 1>
+<H1>modules... rtag [ falnRQq] [ b] [ d] [ r tag | -D date] symbolic_tag</H1>Requires:	repository.<P>
+Changes:	repository.<P>
+Synonym:	rfreeze<P>
+You can use this command to assign symbolic tags to particular, explicitly
+specified source versions in the repository. 'cvs rtag' works directly
+on the repository contents (and requires no prior checkout). Use 'cvs
+tag' instead, to base the selection of versions to tag on the contents
+of your working directory.<P>
+In general, tags (often the symbolic names of software distributions)
+should not be removed, but the -d option is available as a means to
+remove completely obsolete symbolic names if necessary (as might be
+the case for an Alpha release, say).<P>
+The -b option makes the tag a "branch" tag, allowing concurrent, isolated
+development. This is most useful for creating a patch to a previously
+released software distribution.<P>
+You can use the standard -r and -D options to tag only those files
+that already contain a certain tag. This method would be used to rename
+a tag: tag only the files identified by the old tag, then delete the
+old tag, leaving the new tag on exactly the same files as the old
+tag.<P>
+rtag executes recursively by default, tagging all subdirectories of
+modules you specify in the argument. You can restrict its operation
+to toplevel directories with the standard -l option; or you can explicitly
+request recursion with -R.<P>
+The modules database can specify a program to execute whenever a tag
+is specified; a typical use is to send electronic mail to a group
+of interested parties. If you want to bypass that program, use the
+standard -n option.<P>
+The standard options -Q and -q are also available with this command.<P>
+Use the -a option to have rtag look in the 'Attic' for removed files
+that contain the specified tag. The tag is removed from these files,
+which makes it convenient to reuse a symbolic tag as development continues
+(and files get removed from the upcoming distribution).

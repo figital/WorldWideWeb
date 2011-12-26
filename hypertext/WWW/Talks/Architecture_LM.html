@@ -1,0 +1,24 @@
+<TITLE>Architecture_LM -- /Talk_Feb-91</TITLE>
+<NEXTID 1>
+<H1>Architecture</H1>
+<UL>
+<LI>Written in C for portability reasons.
+<LI>Can be compiled by Standard C or Ansi C compilers.
+</UL>Structure consists of three main areas (<A NAME=0 HREF=LM_Architecture.ps>see pic</A>) :-
+<DL>
+<DT>PARSER
+<DD> Formats the text according to the type of file and a predefined
+style sheet. Can parse HTML and plain text files. If a file type is
+not recognised, it treats it as a plain text file.
+<DT>TEXT MANAGER
+<DD> Calls upon the common browser code to search and access
+the required file. Reads the contents of the file when the connection
+has been made and stores in an unformatted buffer. Closes the connection
+to free server. Then as required, passes
+<DT>INTERACTIVE SESSION
+<DD> Produces a prompt at the bottom of the screen
+and deals with the user input.
+</DL>
+
+<ADDRESS>NJPellow
+</ADDRESS>

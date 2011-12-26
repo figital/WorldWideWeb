@@ -1,0 +1,18 @@
+<TITLE>CVSremove -- /Project</TITLE>
+<NEXTID 1>
+<H1>remove [ lR] [files...]</H1>Requires:	Working directory<P>
+Changes:	Working directory<P>
+Synonyms:	m, delete<P>
+Use this command to declare that you wish to remove files from the
+source repository. Like most cvs commands, 'cvs remove' works on files
+in your working directory, not directly on the repository. As a safeguard,
+it also requires that you first erase the specified files from your
+working directory.<P>
+The files are not actually removed until you apply your changes to
+the repository with commit; at that point, the corresponding RCS files
+in the source repository are moved into the 'Attic' directory (also
+within the source repository).<P>
+This command is recursive by default, scheduling all physically removed
+files that it finds for removal by the next commit. Use the -l option
+to avoid this recursion, or just specify that actual files that you
+wish remove to consider.

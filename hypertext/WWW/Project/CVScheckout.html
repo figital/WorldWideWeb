@@ -1,0 +1,63 @@
+<TITLE>CVScheckout -- /Project</TITLE>
+<NEXTID 1>
+<H1>checkout [options] modules...</H1>checkout [options] modules...<P>
+Requires:	repository.<P>
+Changes:	working directory<P>
+Synonyms:	co, get<P>
+Make a working directory containing copies of the source files specified
+by modules. You must execute 'cvs checkout' before using most of the
+other cvs commands, since most of them operate on your working directory.<P>
+Modules are either symbolic names (themselves defined as the module
+'modules' in the source repository; see cvs(5)) for some collection
+of source directories and files, or paths to directories or files
+in the repository.<P>
+Depending on the modules you specify, checkout may recursively create
+directories and populate them with the appropriate source files. You
+can then edit these source files at any time (regardless of whether
+other software developers are editing their own copies of the sources);
+update them to include new changes applied by others to the source
+repository; or commit your work as a permanent change to the RCS repository.<P>
+Note that checkout is used to create directories. The toplevel directory
+created is always added to the directory where checkout is invoked,
+and usually has the same name as the specified module. In the case
+of a module alias, the created subdirectory may have a different name,
+but you can be sure that it will be a subdirectory, and that checkout
+will show the relative path leading to each file as it is extracted
+into your private work area (unless you specify the -Q option).<P>
+Running 'cvs checkout' on a directory that was already built by a
+prior checkout is also permitted, and has the same effect as specifying
+the -d option to the update command described below.<P>
+The options permitted with 'cvs checkout' include the standard command
+options  P, -Q, -f, -k kflag , -l, -n, p, -q, -r tag, and  D date.<P>
+In addition to those, you can use these special command options with
+checkout:<P>
+Use the -A option to reset any sticky tags, dates, or k options.
+(If you get a working file using one ofthe -r, -D, or -k options,
+cvs remembers thecorresponding tag, date, or kflag and continues using
+it on future updates; use the -A option to make cvs forget these specifications,
+and retrieve the "head" version of the file).<P>
+The -j branch option merges the changes made between the resulting
+revision and the revision that it is based on (e.g., if the tag refers
+to a branch, cvs will merge all changes made in that branch into your
+working file).<P>
+With two -j options, cvs will merge in the changes between the two
+respective revisions. This can be used to "remove" a certain delta
+from your working file.<P>
+In addition, each -j option can contain on optional date specification
+which, when used with branches, can limit the chosen revision to one
+within a specific date. An optional date is specified by adding a
+colon (:) to the tag. An example might be what 'cvs import' tells
+you to do when you have just imported sources that have conflicts
+with local changes:<P>
+cvs checkout -jTAG:yesterday -jTAG module<P>
+Use the -N option with ' d dir' to avoid shortening module paths
+in your working directory. (Normally, cvs shortens paths as much as
+possible when you specify an explicit target directory.)<P>
+Use the -c option to copy the module file, sorted, to the standard
+output, instead of creating or modifying any files or directories
+in your working directory.<P>
+Use the -d dir option to create a directory called dir for the working
+files, instead of using the module name. Unless you also use -N, the
+paths created under dir will be as short as possible.<P>
+Use the -s option to display per module status information stored
+with the -s option within the modules file.

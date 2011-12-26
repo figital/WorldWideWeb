@@ -1,0 +1,99 @@
+<TITLE>(No title)</TITLE>
+<NEXTID 1>
+<H1>C++</H1>Notes by Tim on C++. See also: <A NAME=0 HREF=news:4514@cernvax.cern.ch>Werner Jank's report on Saber C</A>.<P>
+C++ compiler is generally called CC (not cc)
+<H2>The same as C or objective-C:</H2>Comments are C or objective-C style.<P>
+Include file name conventions are the same as C (no #import)
+<H2>Overload functions</H2>
+<XMP>	overload pow;	// Tells compiler that overloading is not an error
+	int pow(int, int)
+
+</XMP>To overload an operator "+" for example, define a function called
+"operator +"
+<XMP>
+	sdf
+</XMP>
+<H2>Class specification:</H2>To declare a class:
+<XMP>	class myclass {
+		int	myvariable1;
+		int	myvariable2;
+	public:
+		void myoperation(char *)
+		void mymethod(int, int);
+	};
+
+</XMP>To declare a subclass (why "public"?):
+<XMP>	class myclass : public superclass {
+	...
+	};
+
+
+</XMP>To declare an instance of class myclass:
+<XMP>	myclass myobject;
+
+</XMP>To call a method on a class:
+<XMP>
+	myobject.mymethod(x,y);
+
+</XMP>To define a method for a class:
+<XMP>	void myclass::mymethod(int a, int b)
+	{
+		myvariable1 = myvariable2;		// Instance variables
+		this->myvariable1 = this->myvariable2;	// Equivalent
+		superclass::othermethod(2);		// cf [super ...]
+		return *this;				// Really? see p25
+	}
+</XMP>Within the definition,  "this" is equivalent to objective-C''s "self".
+I can't understand whether it is a pointer to the object or the object
+itself from the above example.<P>
+Note you have, in a class method, no access to the superclass's private
+variables!  However, you can DECLARE that your private class variables
+will be visible to SPECIFIC  methods which are "friends"
+<XMP>		friend  otherclass othermethod(int, int);
+
+</XMP>If you want to declare a method which is not defined in your (dummy)
+class, but MUST be declared in any subclass, declare it "virtual".
+<H2>Constructors</H2>A consructor is a method which initialises an instance.  A constructor
+has the same name as its class. Several can exist with different arguments,
+or no arguments.
+<XMP>
+	class myclass {
+		int	myvariable1;
+		int	myvariable2;
+	public:
+		myclass(char *)
+		myclass(int, int);
+	};
+
+</XMP>A constructor can be called in a declaration staement:-
+<XMP>		int x;
+		myclass myobject(1,2)
+	
+</XMP>A constructor method for a subclass must give the parameters for the
+constructor method for the superclass after ":".
+<XMP>
+	myclass::myclass(int a, int b) : (a+b)
+	{
+		/* code here could be void */
+	}
+</XMP>is the equivalent of Objective-C:
+<XMP>	- newFoo: (int)a bar:(int)b
+	{
+		self = [super newSum:a+b]; 
+		/* code here could be void */
+		return self;
+	}
+</XMP>It seems that objective-C can only distinguish different methods by
+name, not by type of parameter, whilst C++ can distinguish by either,
+except that the name of a constructor is limited to the name of the
+class, so constructors can ONLY be distinguished by the parameter
+typing.
+<H2>Inline expansion</H2>
+<XMP>
+</XMP>The keyword "inline" forces inline expansion of very small functions.
+<H2>References</H2>The prefix "&" means "reference" rather like Algol68 "ref".
+<XMP>			int &r=i;
+</XMP>means r refers to i, so r++ has the effect i++. Allows values to be
+passed by reference? Other uses?
+<H2>Stream.h</H2>cout and cin are standard input and output streams. They take input
+and output operators.

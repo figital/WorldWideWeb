@@ -1,0 +1,23 @@
+<TITLE>HyperText Markup: Deprecated</TITLE>
+
+<H1>Conforming but Unsupported</H1>
+
+These SGML constructs are too messy to support even
+in the sample implementation. But they are implemented
+by, for example, the SGMLs parser by James Clark.
+
+A minimally conforming WWW implementation may refuse to parse this
+section properly. This is in direct conflict with the SGML standard,
+but tough cookies.<P>
+
+newline foo.
+
+marked sections ignore: <![IGNORE[ hideous stuff: </HTML id=#foo> ]]><P>
+
+marked sections cdata: <![CDATA[ hideous stuff: </HTML id=#foo> ]]><P>
+
+
+<dl<dt>untermiated ent tag
+<DD>The start tag for this DL element is not terminated. By virtue of
+SHORTTAG YES in the SGML declaration, this is legal.
+</dl>

@@ -1,0 +1,219 @@
+<title>Commands: CONCISE USER GUIDE</title>
+<h1>CONCISE commands</h1>
+
+This section is designed to introduce the commands (ie. the
+instructions) that you can give to CONCISE. It is suggested that you
+try each of the commands in turn as you read through the text. Use
+your electronic mail system; send a message to the CONCISE service
+at one of the addresses given in section 2, and where you usually
+type the message itself, type in the commands given below. Send the
+message in the usual way, and wait to see what reply you get. The
+reply may come back in a few minutes, or you might have to wait
+longer depending on the speed of the electronic mail.
+
+At the beginning of each message, before any of the commands are put
+in, you must include the following line:
+<xmp>
+start
+</xmp>
+This tells CONCISE to start obeying commands, anything put before
+this line will be ignored.
+
+
+5.1  Getting Help
+
+To get information on what you can do use the `help' command. Enter
+the following text in your message and send it:
+
+start
+help
+
+You will be sent a message telling you how to access the system, and
+how to obtain a copy of this user guide and the full reference
+manual.
+
+To get information about a specific command, or something about the
+system that you do not understand, use the `help' command with a
+topic you want help on. For example, to get help on the `info'
+command, send the following:
+
+start
+help info
+
+
+
+5.2  Moving around
+
+There are two types of information you can get in CONCISE: the first
+is an overview of the information; this sends you a summary, who
+wrote the information, when it was written, and various details of a
+similar nature. The second is the information itself; this is a file
+(potentially large) containing information about the subject in
+question. The commands to get these types of information, `overview'
+and `info' are discussed in 5.4.
+
+The basic way to do anything on the CONCISE service is to go to the
+place, and then perform the action. For example, suppose an overview
+of netnews is required. Netnews is located at /Services/netnews. The
+`goto' command will move you around, the `overview' command can be
+used to get an overview, so the following commands will retrieve the
+overview on electronic mail:
+
+start
+goto /Services/netnews
+overview
+
+A message may have a number of commands in it, so you can move
+around several times in one message. Before CONCISE starts to obey
+the commands you have sent, it puts you at the top of the
+information, that is at one level above COSINE, Networks and
+Services. From there you can go anywhere you want.
+
+Commands that allow movement around the different items are:
+
+goto - goes straight to the item specified;
+top - goes to the top of the information, ie. where you start from;
+up - moves up one level from where you are, eg. if you are at
+/Services/netnews and you use the `up' command, you will got to
+/Services.
+
+
+5.3  Getting Indexes
+
+In order to move around, it is necessary to know where you can go
+to. This is achieved using the `index' command. For example, the
+following commands list the top level index:
+
+start
+top
+index
+
+After obeying this command, CONCISE will send you a message
+containing an index (ie. a list) of all the main categories. In the
+example shown in the diagram this would be:
+
+  COSINE
+  Networks
+  Services
+
+Having obtained an index of the top level, you may goto one of the
+items returned in the list, and perform another index eg:
+
+start
+goto /Services
+index
+
+You would then get a list of Services sent to you. This process can
+be continued eg:
+
+start
+goto /Networks/dfn
+index
+
+... and so on. After doing this a few times you will no longer be
+able to get an index as you will have reached the most detailed index.
+
+5.4  Information and Overviews
+
+There are two types of information you can get: the information and
+the overview (see section 5.2). To get these use the `info' and
+`overview' commands. Both commands can be used on the same item. For
+example, to get all the information on the DFN network use the
+following commands:
+
+start
+goto /Networks/dfn
+overview
+info
+
+There will be two parts to the message that is sent back to you. The
+first is the overview, and the second is the information itself. You
+do not have to send both these commands together, they could be sent
+separately like this:
+
+start
+goto /Networks/dfn
+overview
+
+and like this:
+
+start
+goto /Networks/dfn
+info
+
+5.5  Searching
+
+Another way of finding out what items there are to go to, is the
+`find' command. This allows you to obtain a list of items that have
+got a given keyword attached to them. For example, to get a list of
+items which have something to do with COSINE, use the following
+command:
+
+start
+find COSINE
+
+You will be sent a list of everything that CONCISE can find which is
+to do with COSINE. There is no need to do a `goto' command before
+`find' as it will search everywhere.
+
+The word that you put after `find' is called a keyword. To find out
+what keywords you can use, the `keywords' command can be sent:
+
+start
+keywords
+
+This will return a list of all the keywords that CONCISE knows
+about.
+
+
+5.6  Making comments and asking questions about CONCISE
+
+Any comments, suggestions, or questions about the service may be
+sent to the CONCISE help desk. These messages can be mailed to the
+help desk directly, or they can be sent in the commands using the
+`comment' command. All the text you type after the comment command
+up to the two semi-colons (;;) will be sent to the CONCISE help
+desk. For example:
+
+start
+comment
+The contact name for superfile service mentioned under 
+/Services/superfile is no longer valid - I have just tried to get
+her, and she has apparently changed jobs.
+;;
+
+Note that the `;;' on a line by itself ends the comment, other
+commands may be placed after the `;;' if you want.
+
+
+5.7  Automatic Flagging of New Information
+
+NOTE: **********************************************************
+The commands discussed in this section are not yet available on
+CONCISE. They will be available in the next release.
+****************************************************************
+
+You may wish to be told when there is new information, or when
+something is updated. To do this, go to the place of interest and
+use the `register' command. There are two forms of this command:
+`register update' and `register new'. The first is used to tell you
+when a particular item of information has been updated. The second
+is used to tell you when any new information is added beneath a
+particular category. For example, to be told when the information on
+the NISS information service is updated, send the following
+commands:
+
+start
+goto /Services/niss
+register update
+
+Every time the information on the NISS information service is
+updated (ie changed) you will now be sent a message to tell you
+about it. Later you may want to stop these messages being sent to
+you, so send the following:
+
+start
+goto /Services/niss
+deregister update
+
+Then you will no longer get the messages telling you about changes.

@@ -1,0 +1,146 @@
+<TITLE>HyperText Markup: Recommended Usage</TITLE>
+
+<H1>Recommended HTML Usage</H1>
+
+This part of <A HREF="file:spec.html">the HTML specification</A>
+ discusses recommended usage. These constructs should work even on
+pretty broken implementations. <P>
+
+<H2>Structure of an HTML document</H2>
+
+An HTML document should start with a <A NAME=id1 HREF="#TITLE">TITLE
+element</A>.
+
+<H2>Elements of the Body</H2>
+
+Most text elements consist of a start tag, some content, and an end
+tag.<P>
+
+Some elements are "empty" and consist of only a start tag. For
+example, paragraphs are separated by the P element, which is
+just a P tag.
+<P>
+
+Six levels of headings are supported: <P>
+
+<H3>Level three heading</H3>
+
+<H4>Level four heading</H4>
+
+<H5>five</H5>
+
+<H6>six</H6>
+
+Unordered lists: <P>
+
+<UL><LI>This is the first item of an unordered list.
+
+<LI>This is the
+second item. It's kinda long, and should wrap around on most screens.
+
+<LI>This is the third item. It's only one paragraph, but it's got a
+paragraph tag at the end.
+
+<LI>This is the fourth and final item.
+</UL>
+Ordered lists:<P>
+
+<OL><LI>This is the first item of an unordered list. 
+
+<LI>This is the second item. It's kinda long, and should wrap around
+on most screens.
+
+<LI>This is the third item -- you know, the one with the P element.
+
+<LI>This is the fourth and final item.
+</OL>
+
+<DL><DT>term <DD> definition 
+<DT>another term <DD> and its definition
+</DL>
+
+The address element indicates the author or source of the document. <P>
+
+<ADDRESS>DWC
+connolly@convex.com</ADDRESS>
+
+<H2>Other Elements</H2>
+
+<H3><A NAME=TITLE>TITLE</A></H3>
+
+The TITLE element names the document. The content of the TITLE element
+is raw character data. It should be less than 72 characters, and it
+should contain no linebreaks, '&lt;', '>', or '&amp;' characters. <P>
+
+<H3>ISINDEX</H3>
+
+Indicates the document is searchable.<P>
+
+<H2>Anchors</H2>
+
+A span of text can be marked as an anchor, for example:<P>
+<A NAME="Fred">Fred Flinstone</A><P>
+
+Click <A HREF="neighbor">here</A> to view a neighbor
+document.<P>
+
+<H2>Tags</H2>
+
+A start tag is a name surrouded by angle brackets. An end tag has a
+slash before the name.<P>
+
+<H3>Names</H3>
+
+A name should be a letter followed by letter and/or numbers. Case is
+not significant.<P>
+
+<H2>Normal Text Content</H2>
+
+Normal text  in HTML is parsed for markup. The characters '&lt;', '>',
+and '&amp;' should be treated as <A HREF="#special">special
+characters</A>, lest they be interpreted as markup.<P>
+
+Lines should not exceed 72 characters. Line breaks have no
+significance except to separate words.<P>
+
+<H2>Literal Text Content</H2>
+
+Sections of literal text are represented in HTML as replaceable
+character data, RCDATA. Most markup is ignored in RCDATA.<P>
+
+Line breaks are significant, and characters are rendered in a
+fixed-width font to preserve horizontal formatting. <P>
+<XMP>This is literal text. THIS word
+should line up under  THIS word.
+
+There should be exactly three blank lines between here
+
+
+
+and here.
+ </XMP>
+
+The characters '&amp;', '&lt;', and '>' should be treated as a <A
+HREF="#special">special characters</A>.<P>
+
+<XMP>SGML tags look like <start> and &lt;/end>.
+The marked section close delimiter looks like ]]&gt;.
+But ]] is just two close square brackets, and
+> is just a greater-than sign.</XMP>
+
+<H2><A NAME="special">Special Characters</A>
+</H2>
+
+Characters that are used for markup can be represented by entity
+references. Entity references are written:<P>
+<XMP>&amp;name;</XMP>
+
+The following special characters are used in HTML<P>
+
+<DL><DT>&lt;<DD>lt
+<DT>&gt;<DD>gt
+<DT>&amp;<DD>amp
+<DT>"<DD>quot
+<DT>'<DD>apos
+</DL>
+ <P>

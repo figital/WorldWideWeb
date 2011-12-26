@@ -1,0 +1,60 @@
+<TITLE>HyperText Markup: Writing Mistakes</TITLE>
+
+<H1>Tolerating broken HTML writers</H1>
+
+These are illegal according to SGML, but they're so prevalent that
+they're supported by the sample implementation. <P>
+
+Please stop generating HTML in this style! <P>
+
+<H2><A NAME=NeXT>NeXT editor</A></H2>
+
+<H3>broken in Linemode Browser 1.3c</H3>
+Looks for name in end tag before determining whether to end an RCDATA
+section:<P>
+
+<XMP>
+This example section ends here: </foo .
+
+Even though the above ETAGO begins a markup error,
+this text is in a normal paragraph in conforming implementations.<P>
+
+But, alas, it's not on the linemode browser.<P>
+
+The following XMP tag is an error on conforming systems:
+</XMP>
+
+<A NAME=10>This</A> anchor's name starts with a digit, which is not a
+name start character.<P>
+
+<A HREF=#10>This anchor</A>'s href contains a #, which is not a name
+character. The NeXT browser writes all its anchors like this.
+Unfortunately, many systems copied this behavior.<P>
+
+<H2>html-mode.el</H2>
+
+See <A NAME=id2 HREF="NeXT">NeXT</A>.<P>
+
+<H2>Viola</H2>
+
+Any known problems? I hear it's going to use
+<A NAME=id3 HREF="ftp://ftp.ifi.no/pub/text-processing/sgmls-0.8.tar"
+ TYPE="application/x-tar">SGMLs</A>.
+
+<H2>MidasWWW 1.0</H2>
+
+The MidasWWW parses HTML into its internal data structures, and
+then offers the option to extract the data and write it to a file.<P>
+
+It doesn't get it right all the time.<P>
+
+Treats all out-of-context tags as data: <foo> <P>
+
+<P>
+
+<H2>www_and_frame</H2>
+
+Go get <A NAME=id5
+HREF="ftp://info.cern.ch/pub/www/src/www_and_frame-0.3.tar.Z">The
+latest version</A> -- it should be current with this spec.<P>
+

@@ -1,0 +1,35 @@
+<TITLE>RCSident -- /Project</TITLE>
+<NEXTID 1>ident - identify files
+<H1></H1>Synopsis<P>
+ident [ -q ] [ file ... ]<P>
+Description<P>
+Ident searches the named files or, if no file name appears, the standard
+input for all occurrences of the pattern $keyword:...$, where keyword
+is one of<P>
+Author<P>
+Date<P>
+Header<P>
+Id<P>
+Locker<P>
+Log<P>
+Revision<P>
+RCSfile<P>
+Source<P>
+State<P>
+These patterns are normally inserted automatically by the RCS command
+co(1L), but can also be inserted manually. The option -q suppresses
+the warning given if there are no patterns in a file.<P>
+Ident works on text files as well as object files and dumps. For example,
+if the C program in file f.c contains<P>
+char rcsid[]= "$Header: Header information $";<P>
+and f.c is compiled into f.o, then the command<P>
+ident f.c f.o<P>
+will print<P>
+f.c:<P>
+		$Header: Header information $ <P>
+f.o:<P>
+		$Header: Header information $<P>
+Identification<P>
+Author: Walter F. Tichy, Purdue University, West Lafayette, IN, 47907.
+Revision Number: 1.2 ; Release Date: 89/05/02 . Copyright c 1982,
+1988, 1989 by Walter F. Tichy. RCSDIFF(1L)

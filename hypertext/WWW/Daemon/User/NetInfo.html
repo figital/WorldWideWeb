@@ -1,0 +1,29 @@
+<TITLE>NetInfo -- /User</TITLE>
+<NEXTID 1>
+<H1>Adding a service on the NeXT</H1>The NeXT uses the the "netinfo" database instead of the /etc/services
+file.  This is managed with the /NextAdmin/NetInforManager application.
+Here's how to add the service "www":
+<UL>
+<LI>Start the NetInfomanager by  double-clicking on its icon.
+<LI>If you are operating in a cluster,  open either your local domain
+(/hostname) or if you have authority, the whole cluster domain (/).
+If you're not in a cluster,  just use the domain you are presented
+with.
+<LI>Select "services" from the browser tree.
+<LI>Select "ftp" from the list of services
+<LI>Select "dupliacte" from the edit menu.
+<LI>Select "copy of  ftp" and double-click on its icon to get theproperty
+editor. 
+<LI>Click on  "name" and then on the value "copy of ftp". Change this
+to "www" by typing "www" in the window at the botton, and hitting
+return.
+<LI>Click on "port", and then on the value "21". Change it to "80".
+<LI>Use "Directory:Save" menu (Command/s) to save the result. You will
+have to give a root password or netinfo manager password.
+</UL>
+<DL>
+<DT>
+</DL>
+_________________________________________________________________
+<ADDRESS><A NAME=0 HREF=http://info.cern.ch./hypertext/TBL_Disclaimer.html>Tim BL</A></A>
+</ADDRESS>

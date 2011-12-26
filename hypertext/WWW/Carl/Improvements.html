@@ -1,0 +1,77 @@
+<TITLE>Improvements -- /Carl_Development</TITLE>
+<NEXTID 1>
+<H1>Improvements To Browser</H1>
+<H2>Local directory listing for other platforms</H2>
+<H2>Format handling for other platforms</H2>Currently only UNIX will allow external converters to be used.  With
+VMS it is difficult since most commands don't use standard input and
+standard output, so intermediate files must be used instead 
+<H2>PUT command</H2>The PUT command would allow the browser to place the current document
+either back where it came from or (optionally) elsewhere.  How it
+does this depends upon the protocol which was used to retrieve it.
+<H3>Local file</H3>Where the document is to be saved as a local file, it is merely enough
+to determine write priviledges.  If the user has write access, and
+the file has not been altered since it was read, the file can be saved
+back.  However, the editability of the file should be determined at
+the time of putting, not at the time of reading, since the permissions
+can change dynamically.
+<H3>FTP</H3>To my knowledge there is no guarrenteed way to find out the write
+permissions of a file over ftp.  If this is the case, then the browser
+must assume that the file can be written (and so is editable) until
+it finds that it cannot write.  Even if it can be discovered, in the
+same way as files, the permissions can change indeterminantly.
+<H3>HTTP</H3>The server supplies an EDITABLE field if it will accept back that
+document.  However, that only suggests that it is possible to write
+back, not that the client definitely can (because of changing write
+permissions).
+<H3>News</H3>This really requires posting the article to the news, something I
+am not familiar with.  However, I suspect that the browser would have
+to run an external news posting program, which has the necessary group
+ID (on dxcern only users who are members of the 'news' group can read
+the news directories - all news readers are run with that effective
+group ID).  News articles also have a particular format which might
+have to be imposed (though, again, I'm not sure).
+<H3>Others</H3>I don't think that the other protocols (i.e. gopher) can handle documents
+being returned.
+<H3>Additional complications</H3>As all this wasn't bad enough, there is the addtional complication
+of format handling.  Once the browser has received a file it may transform
+it in a number of ways.  It may be that the final format may be acceptable
+to the server, on the other hand it may not.  Currently there is no
+way for the browser to know.<P>
+The simplest implementation would be to place the restriction that
+a document can only be returned in the same form as it was recieved.
+ The browser would then have to determine if it could undo the conversions
+it did to get the document in displayable form.  If it could then
+the document is editable.<P>
+The more complicated alternative is for the server to tell the browser
+which formats it can receive the document back in, when it first sends
+the document.  The ommision of such an indication would indicate that
+the document was only acceptable in the format it was received in.
+<H2>Editing browser</H2>
+<H3>External text editor</H3>The simplest implementation for this is to allow the user to specify
+an external editor to be invoked, which then allow the SOURCE of the
+current document to be edited.  Unfortunately the current line mode
+browser implementation does not store enough information about each
+document to allow the HTML to be regenerated.  This can be overcome
+is a number of ways:<P>
+1 For every document (or at least those marked as EDITABLE), store
+the source (either in memory or in a temporary file).<P>
+2 When the user indicates that she wished to edit the file, retrieve
+the document again and store it (probably in a temporary file).  The
+problem with this method is if the document is changed in between
+the initial fetch of the document and the edit fetch.<P>
+3 Change the way the browser stores the document.  This would mean
+rewriting the GridText.c module.<P>
+Once the source has been obtained, the editor can be invoked (most
+likely to work on a temporary file) and the source changed.  The old
+version of the document would be discarded, and the new version read
+in.
+<H3>External SGML editor</H3>The use of a generic SGML editor (again external to the browser) would
+require that HTML be redefined, since in its current form it is not
+understandable by most SGML editors.
+<H3>Internal HTML editor</H3>To implement a line mode HTML editor would require the writing of
+an editor which would run on every platform, and be able to handle
+the HTML styles.  It would perhaps be possible to modify an existing
+public domain editor (such as EMACS) for the purpose, but it would
+require a great deal of time and effort (especially since EMACS is
+written is LISP).<P>
+______________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#11> CTB</A></A><P>

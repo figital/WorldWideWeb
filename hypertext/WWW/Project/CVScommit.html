@@ -1,0 +1,59 @@
+<TITLE>CVScommit -- /Project</TITLE>
+<NEXTID 1>
+<H1>[files ...] commit [ lnR] [ m 'log_message' | -f file] [ r revision]</H1>Requires:	working directory, repository<P>
+Changes:	repository.<P>
+Synonym:	ci<P>
+Use 'cvs commit' when you want to incorporate changes from your working
+source files into the general source repository.<P>
+If you don't specify particular files to commit, all of the files
+in your working current directory are examined. commit is careful
+to change in the repository only those files that you have really
+changed. By default (or if you explicitly specify the -R option),
+files in subdirectories are also examined and committed if they have
+changed; you can use the -l option to limit commit to the current
+directory only.<P>
+commit verifies that the selected files are up to date with the current
+revisions in the source repository; it will notify you, and exit without
+committing, if any of the specified files must be made current first
+with 'cvs update'. commit does not call the update command for you,
+but rather leaves that for you to do when the time is right.<P>
+When all is well, an editor is invoked to allow you to enter a log
+message that will be written to one or more logging programs and placed
+in the RCS source repository file. You can instead specify the log
+message on the command line with the -m option, thus suppressing the
+editor invocation, or use the -f option to specify that the argument
+file contains the log message.<P>
+The -r option can be used to commit to a particular symbolic or numeric
+revision within the RCS file. For  example, to bring all your files
+up to the RCS revision "3.0" (including those that haven't changed),
+you might do:<P>
+cvs commit -r3.0<P>
+cvs will only allow you to commit to a revision that is on the main
+trunk (a revision with a single dot). However, you can also commit
+to a branch revision (one that has an even number of dots) with the
+-r option. To create a branch revision, one typically uses the -b
+option of the rtag or tag commands. Then, either checkout or update
+can be used to base your sources on the newly created branch. From
+that point on, all commit changes made within these working sources
+will be automatically added to a branch revision, thereby not perturbing
+mainline development in any way. For example, if you had to create
+a patch to the 1.2 version of the product, even though the 2.0 version
+is already under development, you might do:<P>
+cvs rtag -b -rFCS1_2 FCS1_2_Patch product_module<P>
+cvs checkout -rFCS1_2_Patch product_module<P>
+cd product_module<P>
+[[ hack away ]]<P>
+cvs commit<P>
+Say you have been working on some extremely experimental software,
+based on whatever revision you happened to checkout last week. If
+others in your group would like to work on this software with you,
+but without disturbing mainline development, you could commit your
+change to a new branch. Others can then checkout your experimental
+stuff and utilize the full benefit of cvs conflict resolution. The
+scenario might look like:<P>
+cvs tag -b EXPR<P>
+cvs update -rEXPR1<P>
+[[ hack away ]]<P>
+cvs commit<P>
+Others would simply do 'cvs checkout -rEXPR1whatever_module' to work
+with you on the experimental change.

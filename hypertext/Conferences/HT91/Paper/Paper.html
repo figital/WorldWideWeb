@@ -1,0 +1,200 @@
+<TITLE>WWW Paper for HT91</TITLE>
+<NEXTID 16>
+<H1>An Alternative Architecture for Distributed Hypertext</H1>
+<ADDRESS>T. Berners-Lee,  R. Cailliau, N. Pellow, B. Pollermann<P>CERN, 1211 Geneva 23 Switzerland.
+</ADDRESS>See also <A NAME=3 HREF=Outline.html>Outline</A> , and figues (<A NAME=12 HREF=Lshape.eps> L-shaped</A> , <A NAME=13 HREF=Conversions.eps>conversions</A> )See <A NAME=14 HREF=Paper.wn>Writenow
+file </A>which is definitive, and the <A NAME=15 HREF=../Poster/Notes.html>poster</A> ..<P>
+Contact: Tim Berners-Lee, timbl@nxoc01.cern.ch. tel +41(22)767 3755,
+Fax:+41(22)767 7155.  Paper mail as above.
+<H3><A NAME=7>Abstract</A></H3>The project ("WorldWideWeb", or W3) at the European Particle Physics
+Laboratory (CERN) to build a wide-area hypertext information system
+was faced with a multitude of  different environments on diverse platforms.
+In an attempt to allow interworking of many vendor's products, an
+architecture was developed which does not assume a common file system
+nor a common link repository.  Format negotiation between information
+supplier and requester, and equivalence of hypertext and index searches
+provided a architecture flexible enough to allow a high level of interworking
+without constraining future developments. 
+<H3><A NAME=8>Context and Constraints of a heterogeneous environment</A></H3>Work in High Energy Physics goes on in a small community of computer-literate
+people.  They are located in national and international laboratories
+and universities spread all over the world. They rely on rapid dissemination
+of information, today mainly achieved by electronic mail and fax,
+but increasingly by direct file transfer between computers. The community
+uses computing equipment of all kinds without constraints.<P>
+In this context, the problem we address is the design of a flexible
+hypertext system to allow both centralized distribution of data and
+collaborative work. The specific goal of W3 is to share information
+with ease between different systems on which different standards are
+current. We wished to provide access to existing data without affecting
+the way that data is sourced and managed.  Hypertext data must exist
+alongside normal text and graphic data, and indexes.<P>
+Our survey of the existing documentation formats, and the historical
+impossibility of enforcing a given standard throughout the High Energy
+Physics community, indicated that we would have to deal with a large
+variety of formats. (footnote)These include SGML* of various colors,
+LaTeX*, MicroSoft's Rich Text Format*, nroff, Postscript* and "DVI"
+files, several graphics formats, and of course plain ASCII text. As
+hypermedia development is progressing so rapidly, we would be foolish
+not to leave the list open-ended.
+<H3><A NAME=9>User requirements</A></H3>In a single small working group an authoring system must have a high
+functionality. However, in large groups spread over a large geographical
+area, members are often prepared to accept a reduced service for the
+sake of good connectivity. For example, a physics detector design
+team in Geneva will tend to use the same type of machine, will run
+the same application, and may use sophisticated co-authoring facilities.
+But the other teams of the collaboration, perhaps in Sweden, Portugal,
+Chicago etc., may be happy to have read-only copies of the same documents
+in plain text.  With the aid of existing conversion tools, it is in
+fact often possible for both parties to be satisfied.<P>
+Therefore,  the system must adapt, giving a high functionality when
+there is a high overlap between environments, and falling back on
+lower functionality when there is not. This  "L-shaped" strategy [<A NAME=5 HREF=LShape.draw>
+pic</A> ] makes the best use of existing facilities.
+<H3><A NAME=10>Format negotiation</A></H3>The WWW model [fig] is a client-server model, in which the information
+is stored by hypertext data base servers and accessed by browser clients
+(henceforth called browsers). The contents of a hypertext node is
+sent to the browser by the server.  When requesting a document the
+browser informs the server of the set of formats which it understands,
+with a rough estimate of the degradation of quality and the time penalty
+which it would accept for data in that format.<P>
+The server knows the format or formats in which it posesses the document.
+It can make its own estimate of the desirability of converting the
+document into other formats for transmission. It will transmit the
+document to the browser in that format it considers optimal.<P>
+<A NAME=11 HREF=Conversions.draw>[Picture: Some conversion paths between a few of the more well-known
+formats for textual data]</A><P>
+Note that on the browser side various conversions might then still
+occur, and a particular application may be run to present the incoming
+data.<P>
+In the special case in which the browser and server share a file system,
+the server can be an access library linked to the browser code, so
+explicit transmission of the data between server and browser is not
+necessary.<P>
+Any browser must be prepared to handle a basic subset of data formats.
+This includes a simple marked-up hypertext format, and plain ASCII
+text.
+<H3>Uniform view of information</H3>Much discussion [CROFT90] has come of the relationship between hypertext
+and conventional index-based information retrieval methods. Because
+the WWW servers are decoupled from the browsers, they can provide
+essentially any function: a server can be built to treat an index
+as a hypertext document which accepts an index query operation.  The
+result of the index query is a "virtual hypertext node" containing
+links to all the information found. [pic: example]. In this model,
+hypertext documents and indexes may both lead to other documents or
+indexes.  The reader does not perceive any difference in behaviour,
+and this equivalence gives the system simplicity of use,  and makes
+browsing more intuitive.<P>
+Certain other existing data may be converted by the server into hypertext
+on the fly. In this way, even a simple browser program gives the reader
+a uniform view of many sources of data. An example is a usenet news
+article [RFC] which in its header field contains links to other articles
+and newsgroups; another is information derived from a database, for
+which fields may be linked to the results of further database queries.
+<H3>Uniform Addressing</H3>There are several reasons for having a unique name for any document,
+including the virtual hypertext produced by a server after an index
+search.<P>
+One reason is that this aids the caching of data. Any format conversion
+done by the server,  the transmission of the data across a wide area
+network, and any format conversion done by the browser, are all operations
+which could take time. Server and browser programs will very possibly
+wish to cache the results of some of these steps for some minutes
+or days. <P>
+A second reason is that it is useful to make hypertext links to the
+result of an index search.<P>
+In our arbitrary convention, the name of the result of a search is
+the WWW address of the index, followed by a question mark and a list
+of keywords:<P>
+http://node/path/path/path?keyword+keyword+keyword<P>
+The format of such an address must be the same throughout the system.
+Whilst a browser does not need to understand the details, it must
+be able to determine whether two addresses are equivalent. An obvious
+extension to this format would be to allow a sophisticated database
+query to be included: in its general form the address may be regarded
+as a functional expression for the document.  This suggests the use
+of a generalised query language such as SQL*.  However, for interchange,
+one must avoid a  plethora of proprietary scripting languages.<P>
+This address is treated as a document address. The virtual document
+to which it refers may be treated as any other document. For instance,
+one can make a link to it. In this case, any time a user follows a
+link, the search will be reevaluated (subject to caching).   In general,
+this is a function of the server. The index document itself contains
+text which instructs a human reader how a search may be made. To help
+the casual user, different index documents may exist which in fact
+cover the same data, but use different search algorithms, such as
+full text word indexing, or regular expression matching with boolean
+operators.<P>
+@@problem of identifying equivalent addresses.
+<H3>Protocol</H3>The proper definition of the interface between browser and server
+requires a protocol to be defined. The functionality required is similar
+to that of the FTP protocol* but has the added format negotiation
+and search features. In practice we used a trivial protocol on top
+of TCP, with  a separate connection being made for each (atomic) request.<P>
+The remote search facility, in the case in which there is a wide area
+network between client and browser, obviously saves the time required
+to perform a remote access of a large index by the browser. Furthermore,
+it allows indexes to be maintained and used in different ways on different
+servers, perhaps using proprietary products most suited to the server's
+environment.<P>
+When the hypertext node has been located by the server, its contents
+are transferred to the browser's machine.
+<H3>Lack of central database</H3>There are two schemes of storing links:
+<UL>
+<LI>as part of the contents of the hypertext node to which they belong,
+<LI>in a separate data base of links outside the nodes.
+</UL>The browser must have access to all the links emanating from a node.
+Therefore, since in WWW the node contents are transferred to the browser's
+machine, the links must be shipped along with these contents or be
+part of them. This implies that the server knows how to get the relevant
+links in the case they are stored in a separate data base.  WWW therefore
+keeps the links as part of the node contents.<P>
+No third party is involved in the protocol.  In the case of SGML marked
+up files, the data is stored in the same file as the document. The
+advantages of this approach are
+<UL>
+<LI>Coordination is not needed between a link database and an editor when
+a new document is made.  (expand pros and cons - does system scale?)
+<LI>If a link database is needed, for example for performing statistics,
+management, or for the generation of overview representations, then
+it can be generated by a background process, in much the same way
+as a full text index will typically be updated from the source documents
+overnight. Such databases, like indexes, become value added services
+performed by a "knowbot*". Indeed, the indexes and the links become
+much more similar when viewed in this way, enhancing the homogenous
+nature of the combined system.  Given the "generic link" concept [microcosm,
+perseus90], in which the distinction between an explicit link and
+an index search becomes blurred, this homogeneity is all the more
+important.
+</UL>The disadvantage of this approach is that if a document is moved,
+the link information stored in remote nodes must be updated.  This
+problem, which is still present with a  link repository model once
+the database of links becomes distributed, may be solved using directory
+systems such as [NCS location broker, X500] to convert between names
+and addresses as is required and done for electronic mail*. The WWW
+open naming convention allows logical name spaces served by various
+name servers to be included.
+<H3>Experience to date</H3>At the time of writing, our prototype system includes a hypertext
+browser/authoring system written on top of the NeXTStep* human interface
+tools, and a dumb-terminal oriented browser.  A prototype server on
+a large mainframe provides access to  indexes and documents for High
+Energy Physics including internal newsletters, manuals, news and help;
+internet news articles using NNTP protocol*, and  local and remote
+files in a number of formats. These indexes are maintained using existing
+FIND* software. Hypertext documents may contain pointers to other
+documents, to indexes, and also to the results of keyword searches.
+Non-hypertext documents are included in the scheme, to a total of
+around @@@@ documents of which @@@@ are in hypertext. We have written
+personal notes and project documentation in hypertext, linking it
+in to external information where relevant.  The policy of access to
+existing data has allowed the system to break the threshold of usefulness
+early on. [picture of existing software]
+<H3>Conclusion</H3>The chief advantage of the architecture described has been the great
+independence of browser and server technologies. The various parts
+use very different technologies [see fig] and have been enhanced without
+any global changes being made. As new products arise, provided conversion
+facilities exist, we feel confident that we can continue to offer
+wide-area hypertext connectivity, maybe at relatively low functionality,
+but without impairing the high functionality for those who in a local
+area share documents in a single data format. We hope that this situation
+will allow freer interchange of information in the High Energy Physics
+community, and allow de facto standards for interchange formats to
+arise naturally.

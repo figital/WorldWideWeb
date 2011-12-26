@@ -1,0 +1,69 @@
+<TITLE>RCSrlog -- /Project</TITLE>
+<NEXTID 1>rlog - print log messages and other information about RCS files
+<H1></H1>Synopsis<P>
+rlog [ options ] file ...<P>
+Description<P>
+Rlog prints information about RCS files. Files ending in ',v' are
+RCS files, all others are working files. If a working file is given,
+rlog tries to find the corresponding RCS file first in directory ./RCS
+and then in the current directory, as explained in co(1L).<P>
+Rlog prints the following information for each RCS file: RCS file
+name, working file name, head (i.e., the number of the latest revision
+on the trunk), default branch, access list, locks, symbolic names,
+suffix, total number of revisions, number of revisions selected for
+printing, and descriptive text. This is followed by entries for the
+selected revisions in reverse chronological order for each branch.
+For each revision, rlog prints revision number, author, date/time,
+state, number of lines added/deleted (with respect to the previous
+revision), locker of the revision (if any), and log message. Without
+options, rlog prints complete information. The options below restrict
+this output.<P>
+-L	ignores files with no locks set; convenient in combination with
+-R,-h, or -l.<P>
+-R	only prints the name of the RCS file; convenient for translating
+a working file name into an RCS file name.<P>
+-h	prints only RCS file name, working file name, head, default branch,
+access list, locks, symbolic names, and suffix.<P>
+-t	prints the same as -h, plus the descriptive text.<P>
+-b	prints information about the revisions on the default branch (normally
+the highest branch on the trunk).<P>
+-ddates	prints information about revisions with a checkin date/time
+in the ranges given by the semicolon-separated list of dates. A range
+d1<d2 or d2>d1 selects the revisions that were deposited between d1
+and d2, (inclusive). A range  <d or d> selects all revisions dated
+d or earlier. A range  d< or >d selects all revisions dated d or later.
+A range  d selects the single, latest revision dated d or earlier.
+The date/time strings d, d1, and d2 are in the free format explained
+in co(1L). Quoting is normally necessary, especially for < and >.
+The separator is ';'.<P>
+-l[lockers]	prints information about locked revisions. If the comma-separated
+list lockers of login names is given, only the revisions locked by
+the given login names are printed. If the list is omitted, all locked
+revisions are printed.<P>
+-rrevisions	prints information about revisions given in the comma-separated
+list revisions of revisions and ranges. A range rev1-rev2 means revisions
+rev1 to rev2 on the same branch, -rev means revisions from the beginning
+of the branch up to and including rev, and revmeans revisions starting
+with rev to the end of the branch containing rev. An argument that
+is a branch means all revisions on that branch. A range of branches
+means all revisions on the branches in that range.<P>
+-sstates	prints information about revisions whose state attributes
+match one of the states given in the comma-separated list states.<P>
+-w[logins]	prints information about revisions checked in by users with
+login names appearing in the comma-separated list logins. If logins
+is omitted, the user's login is assumed.<P>
+Rlog prints the intersection of the revisions selected with the options
+-d, -l, -s, -w, intersected with the union of the revisions selected
+by -b and -r.<P>
+Examples<P>
+rlog -L -R RCS/*,v <P>
+rlog -L -h RCS/*,v <P>
+rlog -L -l RCS/*,v <P>
+rlog RCS/*,v<P>
+The first command prints the names of all RCS files in the subdirectory
+'RCS' which have locks. The second command prints the headers of those
+files, and the third prints the headers plus the log messages of the
+locked revisions. The last command prints complete information.<P>
+Diagnostics<P>
+The exit status always refers to the last RCS file operated upon,
+and is 0 if the operation was successful, 1 otherwise.

@@ -1,0 +1,64 @@
+<TITLE>DataModel -- /W3Paper</TITLE>
+<NEXTID 1>
+<H1>The W3 Model of Information</H1>An information system must have an abstract model of what information
+is. The reader uses this model when exploring the information space,
+so it must be a comprehensible model.<P>
+The W3 information space is conceptually simple, but is sufficiently
+flexible to be able to incorporate existing information systems as
+subsets of the space. The reverse is not generally possible, because
+W3 has probably the most flexible model of current systems.
+<H2>Document objects</H2>The information universe is compsed of objects which we call "documents"
+to match user interface parlance. In hypertext terms they are nodes.
+  The format and type of data contained within an object is not constrained.
+In practice most objects are text files or hypertext files, but any
+numeric, graphical or abstract type could equally well be a document.
+<H2>Links</H2>The hypertext model allows documents to be linked. To be precise,
+an "anchor" may be a whole or part of a document, and a directional
+"link" joins two anchors. In principle one anchor may have several
+links, but in practice for simplicity we do not exploit this.<P>
+Links are in principle typed with information conveying the semantics
+of their existence, though again we have not used this feature yet.
+The topology of the "web" of links and documents is unconstrained,
+although we can envisage applying constraints to links with particular
+types.
+<H2>User operations</H2>To navigate web, the use has two basic operations.  One is to follow
+a link. This is typically done by clicking with a mouse on the anchor
+in one document, causing the document of the destination anchor to
+be presented, and the destination anchor highlighted. <P>
+Links in practice include handmade links which the authors of documents
+have included so as to convey an association of ideas to the reader,
+and links generated automatically by programs which produce a hypertext
+view of some multiply connected system of data. 
+<H2>Indexes</H2>There is a common case, though, in which following of links is not
+sufficiently powerful. That is in the case of an index. It is not
+practical to present, for example,  the entire telephone book to a
+user, and expect him or her to browse through it. Instead, he or she
+would prefer to use the many powerful techniques of information retrieval
+to find the required entry.<P>
+Therefore, some documents are flagged as "indexes". This is a broad
+term, indicating that behind them lies some search which the user
+can request.  The visible view of the index (its "cover page") specifies
+what sort of a search will be done, and what paparmeter it requires.
+  In the case of an index document, the user is allowed to specify
+a query. This is the second operation of navigation.<P>
+The web does not impose any constraints on the variety of serach engine,
+and the protocols are transparent to the communication between the
+user and the search engine. In practice we find that real users tend
+to go for very simple one or two word queries.
+<H2>Search results</H2>When a user queries a search engine, the result is a hypertext document
+which points to other anchors which match the search criteria. Two
+points are important here.<P>
+The first is that this document is just like any other hypertext document
+from te point of viewof the user interface.  This means that no extra
+user inferface metaphor is required, and the same interaction pattern
+may be used for browsing it as would be used for any other document.<P>
+The second is that the search result, like any other document, has
+a name.  This is composed of the name of the index plus the search
+criteria. In a more sophisticated version it would be a functional
+expression in some genral functional language for the algorithm which
+generated it.<P>
+The user may therefore refer to the search result just like a document,
+and make links to it. Evry time the link is followed (subject to caching),
+the search is reevaluated.
+<ADDRESS>
+</ADDRESS>

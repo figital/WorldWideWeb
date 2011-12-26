@@ -1,0 +1,59 @@
+<TITLE>HTML Writing Guidelines</TITLE>
+
+<H1><A NAME=top>HTML Writing Guidelines</A></H1>
+
+These are things to watch out for to make sure your
+data can be parsed by standard implementations.
+
+<H2>Text Elements</H2>
+
+nesting errors<P>
+
+<H3>Names</H3>
+
+34 character max.<P>
+
+<H2>Normal Text Content</H2>
+
+Use entities for all &lt;, &gt; and &amp; characters.
+
+@@@ Latin 1 characters?
+
+comment: <!-- foo I'm a comment!--> The sample implementation
+groks. For copyrights, RCS keywords, etc.<P>
+
+processing instruction: <?bold lkjsdf > If you've _got_ to
+stick TeX macros or something in there, use this. The sample
+implementation won't even tell you it's there, though.<P>
+
+<H2>Literal Text Content</H2>
+
+Try to use as few entities as possible in Literal mode: only
+treat '&lt;' followed by '/', &amp; followed by a letter or '#',
+and &gt; when it follows ]] as entites. Old-style clients
+will display markup in an RCDATA section as data.
+
+<XMP>
+<!-- this would be a comment in PCDATA. It's data in RCDATA. -->
+
+<! this would be an markup delcaration, which would be an
+error in PCDATA. It's data in RCDATA.>
+
+<start> tags are fine!
+& as long as it's not followed by a letter or '#', it's fine!
+&# is even ok, unless it's followed by a letter or a number.
+</XMP>
+
+<H2>Other Elements</H2>
+
+<H3>TITLE</H3>
+
+Keep the title short and free of &lt;, &gt;, and &amp; characters.
+No newlines.
+
+<H2>Anchors</H2>
+
+Thou shalt quote thy URLs. Use NAMEs that start with a letter.
+Remember: 34 chars max.
+
+</BODY>

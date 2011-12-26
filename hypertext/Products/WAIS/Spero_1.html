@@ -1,0 +1,182 @@
+<TITLE>Spero_1 -- /WAIS</TITLE>
+<NEXTID 1>
+<H1>On the commercial viability of WAIS.</H1>
+<XMP>	   A response to Jane Smith's article `WAIS is a worthless fad'
+	   and a proposal to for the commercial development of Wide Area
+		       Information Services.
+
+		    Simon E Spero, 10/10/1991
+
+
+   In the aforementioned article, Jane discusses the various problems that
+ WAIS (Wide Area Information Services) may experience in gaining acceptance 
+at existing sites. In this response, I will attempt to address some of the
+points she raises, and propose some possible to solutions to the problems
+therin.
+
+
+Existing networked sites
+------------------------
+
+  Her first claim is that policy decisons on the provision of network services
+is the province of systems administrators. This is almost never the case- 
+network policy is normally determined by upper management. Technical 
+considerations will usually be taken into account, but in the end, services
+are user driven. If management dictates that a service be provided, then
+that service will be provided.
+
+  Jane does however make the important point about critical mass - many 
+sites will only install a service once it has been accepted by many other
+sites. This is true, but is unimportant when change becomes user driven.
+
+Commercialising WAIS
+--------------------
+
+  The most important point that Jane raises is the ingrained resistance that
+the corporate and naive user world has to unsupported products. No matter how
+much acceptance applications like 'usenet' and the Gnu suite have gained, their
+market penetration is absolutely neglible when compared to programs such as
+`Lotus 123', or even `Pagemaker'. It is my belief that WAIS has the potential
+to be the next killer application.
+
+  For most people, DTP is essentially useless, yet it managed to become a
+ staple product, to be found on the hard disk of every personal computing 
+system. DTP aspired to revolutionise the way that information was presented-
+it's main result has been an increase in height of the stacks of paper on
+one's desk, with no change in the actual content. Making sense of this data,
+and getting it into a form where it can be useful will be one of WAISs main
+selling points.
+
+I believe that the market for WAIS products can be split into several 
+categories:
+
+	Large scale information providers.
+	Medium scale information providers.
+	In-house corporate information providers.
+	Small scale information providers.
+	End users.
+
+Very Large scale information providers, such as Dow Jones are already addressed
+by the CMDRS product from Thinking Machines Corp. [2,3,4]. However, this system
+runs on the Connection Machine supercomputer, a machine costing millions of
+dollars. This very high startup cost requires a lot of justification before
+a purchase can be made, and only makes sense when the amount of information
+to be managed is beyond a certain level.  CMDRS, and the leading edge 
+hardware it represents, will remain the province of the dedicated information
+provider until either hardware prices fall (CM Classic?), or sheer volume 
+of data overwhelms all other options.
+
+  The experiment at KPMG Peat Marwick [1] has demonstrated the need for 
+better access to corporate information. It also showed how a corporate
+wide WAIS system could be used to address this need. However, the hardware
+used for this experiment was provided on loan from Thinking Machines Corp.,
+avoiding the need for Peat Marwick to pre-evaluate cost issues. It is possible
+that the volume of information generated in a large, paper intensive company
+such as Peat Marwick would mandate the use of CMDRS, but the vast 
+majority of smaller corporations would probably not reach the volume 
+needed to justify the outlay.
+
+  The only alternative server available is that included in the freely
+redistributable release from TMC [5]. This software is in the public 
+domain, and includes both server and client software. However, this sofware
+is unsupported, and much of it is not of a commercial standard. Changes made
+by the author to the base  release [6,7] have yielded performance improvements
+of between 1 and 2 orders of magnitude. However, query performance is still 
+not yet good enough to cope with a high volume of transactions on very large
+databases.
+
+ Apart from the Unix client  xwais,  clients have been prepared for 
+Macintoshes, PCs, and for dumb terminals connected to UNIX machines. There
+has also been a port of the basic package to VMS.
+
+  All of these clients are freely redistributable, and unsupported. Although
+functionality is somewhat limited, all seem to be fairly reliable
+
+  The Internet is not the only network in the world. Indeed, as ISDN becomes
+more widespread, its importance outside the research community will dissapear.
+Now that cheap ISDN 'modems' have become appearing (Dataflex supply a portable
+modem for under GBP600), and with the approach of near 100% ISDN coverage in
+many countries, network applications whose bandwidth requirements were once
+prohibitive are now possible. A plug and play WAIS package could be ISDNs
+killer application.
+
+  Despite the promise that WAIS offers, the whole enterprise will stand or
+fall on the quality of the information it provides.  Here WAIS already has 
+a head start, due to the quality and popularity of DowQuest. The fact that
+WAIS technology is not entirely an unknow factor will help encourage 
+information providers to start offering WAIS oriented services.
+
+ WAIS can be used at many levels of technology. Because it uses Open Protocols,
+and is not tied to any one form of communications, products can be developed 
+for currently avaiable technology ( PSTN lines, 9600/19200baud modems), 
+and then leveraged on to newer technologies as they become avaialable.
+
+
+A proposal
+----------
+
+ For WAIS to take off, fully supported, high-performance servers for 
+conventional architectures must become available, and clients must be made 
+accesible to the techically naive user. My proposal is for the formation of
+a new company to market, develop, and service wide area information systems.
+
+  In order to succeed, such a company would need to work closely with the 
+original with the orignal WAIS developers - Thinking Machines Corp., KPMG
+Peat Marwick, Dow Jones, and Apple. Of these, the first two are the more 
+important- TMC both for the quality of its technical staff and its existing
+WAIS products, PM for its marketing ability and knowledge of the needs of its
+clients.
+
+  The danger of WAIS is that there are so many dazzling new frontiers that
+development may get sidetracked into areas that are not immediately profitable.
+Because of this, the first product of the new company would be a package  
+addressed to the corporate information user described above. 
+
+  Such a package would comprise of a server running on a dedicated high 
+performance serial machine, of the Sparcserver (4/490 or 4/690) class,
+together with clients for the Macintosh and IBM-PC.  The desired capacity of
+the server is a matter for conjecture- as an absolute minimum, it should be
+able to handle common relevance feedback queries on databases of 1/2Gb, 
+although I belive it should be possible to far exceed this by radically 
+restructuring the information retrieval process.  Ideally, the first version
+would be pre-sold, possibly to Peat Marwick, or a client thereof.
+
+  The profits from such a relatively simple package could then be used to
+pay for the development of the next generation of wais products.
+
+  
+Comments?
+---------
+
+  Do you think there's a need for such a company? Do you think that by 
+following a plan like the one outlined above, it would be successful?
+
+
+Simon  
+
+References.
+
+[1] An Information System for Corporate Users: Wide Area Information Servers,
+    Kahle, Brewster and Medlar, Art, TMC Tech Report TMC199.
+    
+[2] Massively Parallel Information Retrieval for Wide Area Information,
+    Servers", C. Stanfill, Thinking Machines, October, 1991.  Paper presented
+    at the IEEE International Conference on Systems, Man, and Cybernetics.
+    Charlottesville, Virginia.
+
+[3] "Very Large Database Applications of the Connection Machine System",
+    D. Waltz, C. Stanfill, S. Smith, R. Thau, 1987.  Thinking Machines 
+    technical report TMC-70. Appeared in AFIPS/1987 NCC Proceedings, July 1987.
+
+[4]  Parallel Computing for Information Retrieval: Recent Developments",
+     C. Stanfill, January, 1988.  Thinking Machines technical report TMC-69.
+
+[5]  New Unix Internet Release (Beta 3 Release) Available, 
+     Kahle, Brewster, message to wais-talk  mailing list.
+
+[6]  "Interesting Statistics", Spero, Simon, message to wais-talk mailing list.
+
+[7]  "Patches to wais-8-b3.1", Spero, Simon, message to wais-talk mailing list.
+
+
+</XMP>

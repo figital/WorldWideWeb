@@ -1,0 +1,51 @@
+<TITLE>CVShistory -- /Project</TITLE>
+<NEXTID 1>
+<H1>history [ report] [ flags] [ options args] [files...]</H1>Requires:	the file '$CVSROOT/CVSROOT/history'<P>
+Changes:	nothing.<P>
+cvs keeps a history file that tracks each use of the checkout, commit,
+rtag, update, and release commands. You can use 'cvs history' to display
+this information in various formats.<P>
+Warning:	'cvs history' uses ' f', ' l', ' n' and ' p' in ways that
+conflict with the descriptions in "Common Command Options".<P>
+Several options (shown above as -report) control what kind of report
+is generated:<P>
+c	Report on each time commit was used (i.e., each time the repository
+was modified).<P>
+m module	Report on a particular module. (You can meaningfully use
+-m more than once on the command line.)<P>
+o	Report on checked out modules.<P>
+T	Report on all tags.<P>
+x typ	Extract a particular set of record types X from the cvs history.
+The types are indicated by single letters, which you may specify in
+combination. Certain commands have a single record type: checkout
+(type 'O'), release (type 'F'), and rtag (type 'T'). One of four record
+types may result from an update:	'W', when the working copy of a file
+is deleted during update (because it was gone from the repository);
+'U', when a working file was copied from the repository; 'G', when
+a merge was necessary and it succeeded; and 'C', when a merge was
+necessary but collisions were detected (requiring manual merging).
+Finally, one of three record types results from commit: 'M', when
+a file was modified; 'A', when a file is first added; and 'R', when
+a file is removed.<P>
+e	Everything (all record types); equivalent to specifying ' xMACFROGWUT'.<P>
+The options shown as -flags constrain the report without requiring
+option arguments:<P>
+a	Show data for all users (the default is to show data only for the
+user executing 'cvs history').<P>
+l	Show last modification only.<P>
+w	Show only the records for modifications done from the same working
+directory where 'cvs history' is executing.<P>
+The options shown as  options args constrain the report based on
+an argument:<P>
+b str	Show data back to a record containing the string str in either
+the module name, the file name, or the repository path.<P>
+D date	Show data since date.<P>
+p repository	Show data for a particular source repository (you can
+specify several -p options on the same command line).<P>
+r rev	Show records referring to revisions since the revision or tag
+named rev appears in individual RCS files. Each RCS file is searched
+for the revision or tag.<P>
+t tag	Show records since tag tag was last added to the history file.
+This differs from the -r flagabove in that it reads only the history
+file, not the RCS files, and is much faster.<P>
+u name	Show records for user name.

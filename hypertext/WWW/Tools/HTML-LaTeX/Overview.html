@@ -1,0 +1,34 @@
+<xmp>
+Date: Wed, 4 Nov 1992 16:48:34 -0500
+From: Jim Davis <davis@dri.cornell.edu>
+To: wei@xcf.berkeley.edu, www-talk@nxoc01.cern.ch
+Subject: improved printing of WWW files
+</xmp>
+If you can't quite manage to live without hardcopy, you may
+wish sometimes to print WWW files.  I have written a couple
+of scripts to do this.  They are particularly useful with
+Pei Wei's excellent Viola WWW browser.
+<p>
+A tar archive is available for anonymous FTP:
+<p>
+dri.cornell.edu/pub/davis/print-www.tar
+<p>
+It contains:
+<xmp>
+README
+print-www
+print-www.l
+html-to-latex
+html2latex.sed (modified version of original CERN version)
+</xmp>
+The hardest part was writing the perl script to obtain documents
+via http protocol - turns out you cant just run pipes through telnet.
+<p>
+The conversion from HTML to LaTex is not really robust yet - 
+this  is doubly hard since there is no guarentee that the HTML
+is legal.  But at least it works for my test cases.  No doubt
+it will be improved in time.
+<p>
+best wishes
+
+

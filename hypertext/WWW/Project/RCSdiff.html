@@ -1,0 +1,34 @@
+<TITLE>RCSdiff -- /Project</TITLE>
+<NEXTID 1>rcsdiff - compare RCS revisions
+<H1></H1>Synopsis<P>
+rcsdiff [ -biwt ] [ -cefhn ] [ -q ] [ -rrev1 ] [ -rrev2 ] file ...<P>
+Description<P>
+Rcsdiff runs diff(1) to compare two revisions of each RCS file given.
+A file name ending in ',v' is an RCS file name, otherwise a working
+file name. Rcsdiff derives the working file name from the RCS file
+name and vice versa, as explained in co(1L). Pairs consisting of both
+an RCS and a working file name may also be specified.<P>
+The options -b, -i, -w, -t, -c, -e, -f, and -h, have the same effect
+as described in diff(1); option -n generates an edit script of the
+format used by RCS. The option -q suppresses diagnostic output.<P>
+If both rev1 and rev2 are omitted, rcsdiff compares the latest revision
+on the default branch (normally the highest branch on the trunk) with
+the contents of the corresponding working file. This is useful for
+determining what you changed since the last checkin.<P>
+If rev1 is given, but rev2 is omitted, rcsdiff compares revision rev1
+of the RCS file with the contents of the corresponding working file.<P>
+If both rev1 and rev2 are given, rcsdiff compares revisions rev1 and
+rev2 of the RCS file.<P>
+Both rev1 and rev2 may be given numerically or symbolically, and may
+actually be attached to any of the options.<P>
+Examples<P>
+The command   rcsdiff f.c<P>
+runs diff on the latest revision on the default branch of RCS file
+f.c,v and the working file f.c.<P>
+Diagnostics<P>
+The exit status is 0 if there were no differences during the last
+comparison, 1 if there were differences, and 2 if there were errors.<P>
+Identification<P>
+Author: Walter F. Tichy, Purdue University, West Lafayette, IN, 47907.
+Revision Number: 1.3 ; Release Date: 89/05/02 . Copyright c 1982,
+1988, 1989 by Walter F. Tichy.

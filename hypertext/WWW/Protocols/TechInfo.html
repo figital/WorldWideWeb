@@ -1,0 +1,138 @@
+<xmp>
+TechInfo                      Techinfo Protocol                       Thu Jun 18
+================================================================================
+
+                        TechInfo Server Protocol - V1.0
+6/1/90
+S. Thorne
+
+      This document outlines the protocol to the TechInfo Server. Much of this
+is in flux , and therefore this should only be considered accurate as of
+this date.
+
+%      Files or documents must be standard 7 bit ascii in no more than 80
+      character rows. Files are sent back and forth with only a LF as an end
+      of line character.(This should probable be changed to the standard CRLF)
+
+%      All command lines must end with a  CRLF.
+
+%      Parameters are delimited by a ":".
+
+%      The Techinfo server port is 9000.
+
+%      The Techinfo server sends a banner back when a connection is first
+      made.
+
+%      All commands issued to the server should receive some sort of response.
+
+%      Each line of returned information is ended with a CRLF. The end of the
+      return information (since it could be any number of lines) is signified
+      by a "." on a line by itself (this line is also terminated with a CRLF).
+      Therefore when you receive the sequence of CRLF.CRLF the server has
+      finished responding, and is waiting for it's next command.
+
+%      Return error messages are strings made up of an error code, and a text
+      message delimited with a ":". A zero error code means that the last
+      command was successful.
+
+%      All commands are one character followed by any number of parameters
+      delimted by colons. These commands should be  followed by a CRLF.
+
+%      The term"base.node.info" will mean a string of the following format.
+      <node.id>:<Flags>:<Date>:<Topic>:<Title>:<Source>:<Locker>:<Path>
+      node.id is an integer and is the absolute node id of a node.
+      Flags is an integer which should be set to 4 when adding a new node.
+      Date is an integer - a date in the Unix internal date format divided by
+      86400. The rest of the fields are plain text.
+
+%      The term "links.string" will mean a string of node.ids seperated by
+      commas.
+
+%      A nodelist is a list of nodes. The first line returned shows the number
+of items to expect, the nodes come seperated by LF,  in the format of
+      <level #>:<base.node.info>
+
+%      The Techinfo server closess any connections which have been
+      inactive for 1440 minutes.
+
+
+
+Commands:
+
+      All commands return "0:OK" if successful except where noted.
+
+Command which need Provider authorization:
+
+
+Add a node.             This adds a new node to the web. The flag field must
+be set to 4. The date field is filled in by the server with the date. Returns
+the node id assigned.
+
+      a:<base.node.info>
+
+Replace a node      Replaces the base node information of a node, but leaves
+the links unchanged.The date field is filled in with the date. You must be the
+authorized source of the node.
+
+      r:<base.node.id>
+
+Delete a node      Removes all references to the node. Will not allow a node
+with children to be removed. You must be the authorized source of the node.
+      x:<node.id>
+
+Link nodes            Create a link. You must be authorized as the source of
+the
+parent node
+
+      l:<node.id of the parent node>: <links.string of children nodes>
+
+Unlink node      Destroy a link. There is no checking done for orphans.You
+must be authorized as the source of the parent node
+
+      u:<node.id of the parent node>:<node.id of child node>
+
+Reorder child links. This command tries to take one nid and move it to the
+position of another. It displaces all the children down to make room at
+this position. You must be authorized as the source of the parent node
+
+      g:<node id of parent>:<node id of position to displace>:<node id of
+child to move>
+
+Provider Mode      Begin a provider session.
+
+      p:<userid>:<password>
+
+End Provider      End a provider session.
+
+      c:
+
+Send a file            Send a file to the server for storage. You must be the
+authorized source of the node. Returns an "0:OK" and then expects to get
+the file with every line ending with a LF and a final line of just a "." and
+CRLF.
+
+      f:<node id>    .......after acknowlegment;....the file.
+
+Commands which require Adminitrator authorization:
+
+      begin as admin      z:<password>
+
+      save the web            y
+
+Command which do not need authorization:
+
+      Send node info      s:<node.id>
+      <base.node.info>:<links.string of parents>:<links.string of children>
+
+      get version        v:<machine name>            current client version #
+      below                  w:2:<node.id>:<level>      nodelist
+      above                  w:1:<node.id>:<level>      nodelist
+      search            b:<string>                  nodelist
+      map                  w:3:<node.id>:<level>      nodelist
+      quit                  q
+
+      Get a document      t:<node.id>:<starting character>:<max # of bytes to
+send> - returns an initial line of " # Total Characters:# sent: This
+document was last modified on <date>
+
+</xmp>

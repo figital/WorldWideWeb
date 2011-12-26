@@ -1,0 +1,37 @@
+<TITLE>DIAGNOSING X25 ACCESS PROBLEMS ON CERNR4</TITLE>
+
+<H2>Log Files</H2>
+CERNR4 logs some events, such as failed calls, in the file:
+<XMP>
+     DECNET$LOG:NETEVENTS.LOG
+
+</XMP>
+This file is renamed at midnight to decnet$log:netevents.old and the last
+10 versions are kept.<P>
+This file is shared by all DECrouters at CERN. To find specific entries related
+to CERNR4, search the file for the string 'cernr4'.
+<XMP>
+
+</XMP>
+<H2>TRACE</H2>
+The commands to trace all X25 Level 3 traffic on CERNR4 are given below. Note
+that this will create a LOT OF DATA in files called trace.dat in your current
+directory. Running trace for 3-10 mins is usually long enough. The trace
+command may only be possible from UXCSB1.
+<XMP>
+        $ set proc/priv=oper
+        $ trace/router start cernr4"cern tracex25"::x25l3line
+
+        .... now let trace run for a few minutes ....
+
+        $ trace/router stop
+        $ trace/router analyze/out=trace.lis/data=ascii/wid=80
+        $ set proc/priv=nooper
+
+</XMP>
+The result of the trace will be in the file trace.lis in your current
+directory. You can now scan this with the editor, for example.<P>
+
+A full desription of the X25router trace facility along with other diagnosis
+facilities is contained in the section 'Problem Solving Guide' of the X25router
+2000 manual. There is a copy on the shelf behind the desk of Denise Heagerty (Bld 31-2-016).

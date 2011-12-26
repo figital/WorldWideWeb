@@ -1,0 +1,128 @@
+<!-- test.html $Id$ -->
+<TITLE>HyperText Markup: Recommended Usage</TITLE>
+
+<H1>Recommended HTML Usage</H1>
+
+These constructs should work even on pretty broken implementations.
+
+<H2>Text Elements</H2>
+
+Most text elements consist of a start tag, some content,
+<!-- comment foo -->
+and an end tag. A start tag is an identifier surrouded by angle
+<? processing instruction >
+brackets. An end tag is an open angle bracket, a slash, an
+identifier, and a close bracket.  <P>
+
+An identifier should be a letter followed by up to 7 letters
+or numbers.  <P>
+
+No spaces are allowed between the tag open bracket
+and the identifier. Space is allowed between the identifier
+and the close bracket.  <P>
+
+Some elements are "empty" and consist of only a start tag.  <P>
+
+Paragraphs are separated by the "P" element.  <P>
+
+Six levels of headings are supported:  <P>
+
+<H3>Level three heading</H3>
+<H4>Level four heading</H4>
+<H5>five</H5>
+<H6>six</H6>
+
+Unordered lists:  <P>
+
+<UL>
+<LI> This is the first item of an unordered list.
+<LI> This is the second item. It's kinda long, and should wrap around
+on most screens.  <P>
+<LI> This is the third item. It's only one paragraph, but it's got
+a paragraph tag at the end.<P>
+<LI> This is the fourth and final item.
+</UL>
+
+Ordered lists:  <P>
+
+<oL>
+<LI> This is the first item of an unordered list.
+<LI> This is the second item. It's kinda long, and should wrap around
+on most screens.
+<LI> This is the third item -- you know, the one with the P element.  <P>
+<LI> This is the fourth and final item.
+</oL>
+
+<DL>
+<DT> term
+<DD> definition
+<DT> another term
+<dd> and its definition
+</DL>
+
+The address element indicates the author or source of the document.
+<ADDRESS> DWC   <P>
+connolly@convex.com
+</ADDRESS>
+
+<H2>Normal Text: PCDATA</H2>
+
+Normal text is represented in HTML as parsed character data, #PCDATA.
+The characters '&lt;', '&gt;', and '&amp;' should be represented as
+"&amp;lt;", "&amp;gt;", and "&amp;amp;" respectively, lest they
+be interpreted as markup. Lines should not
+exceed 72 characters. Line breaks have no significance except to
+separate words.  <P>
+
+<H2>Literal Text: RCDATA</H2>
+
+Sections of literal text are represented in HTML as replaceable
+character data. Line breaks are significant, and characters are
+rendered in a fixed-width font to preserve horizontal formatting.  <P>
+
+<XMP>
+This is literal text. THIS word
+should line up under  THIS word.
+
+There should be exactly three blank lines between here
+
+
+
+and here.
+
+</XMP>
+
+The '&amp;' character should be represented as "&amp;amp;".
+The character sequence "&lt;/" must be represented as "&amp;lt;/".
+The character sequence "]]&gt;" must represented as "]]&amp;gt;".
+
+<XMP>
+SGML tags look like <start> and &lt;/end>.
+The marked section close delimiter looks like ]]&gt;.
+But ]] is just two close square brackets, and
+> is just a greater-than sign.
+</XMP>
+
+<H2>Document Description Elements</H2>
+
+The TITLE element names the document.
+The content of the TITLE element is just character data, CDATA.
+It should be less than 72 characters, and it should contain
+no linebreaks, '&lt;', '&gt;', or '&amp;' characters.  <P>
+
+The ISINDEX tag appears at most one time, and it precedes all tags
+but TITLE and NEXTID.<P>
+
+<H2>Elements with Attributes</H2>
+
+Some elements have associated named attributes. The values of
+the attributes of an element are specified in its start tag.<P>
+
+
+Attribute values are represented as RCDATA surrounded by double
+quotes.  The character '"' must be represented as "&amp;quot;" in an
+attribute value literal.
+
+The NEXTID tag appears at most one time, after the title and before
+the text elements.<P>
+

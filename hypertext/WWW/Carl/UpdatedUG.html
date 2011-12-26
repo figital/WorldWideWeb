@@ -1,0 +1,54 @@
+<TITLE>UpdatedUG -- /Carl_Daemon</TITLE>
+<NEXTID 1>
+<H1>Updated User Guide</H1>
+<H2>Format Handling</H2>In order to allow the daemon to tell the client the format of the
+document that is being supplied, the daemon must itself be able to
+recognise the format of local files.  This it currently does by examining
+the "." extensions of a given file, and using a lookup table to find
+out the name of the format which is implied by this extension.  The
+format file is specified in the command line by the -f option.  The
+file consists of sequence of lines of the form:
+<XMP>FORMAT_NAME/FORMAT_PENALTY/FILE_EXTENSIONS/UNUSED/UNUSED
+
+</XMP>An example is given below
+<XMP>HTML//html//
+PLAINTEXT//txt,DEFAULT//
+POSTSCRIPT//ps//
+TIFF//tiff//
+GIF//gif//
+COMPRESSED//Z//
+
+</XMP>The FILE_EXTENSIONS entry is a comma separated list of extensions.
+One of the formats may have the extension entry DEFAULT, which means
+that this will be used if no others match.<P>
+By default, if not format file is specified, only HTML and PLAINTEXT
+are defined (with PLAINTEXT being the default).
+<H2>Password Protection</H2>In addition to the rules file, the daemon now checks the access permissions
+on the file before returning it.  Where global read is allowed, the
+document is returned.<P>
+On UNIX platforms, a check is carried out to see if the user ID and
+password supplied by the client is valid on the host.  If they are,
+the file must then either be owned by the user (and have read permission)
+or the user must be a member of the group (and the group must have
+read permission).  In either case the daemon must be run with an effective
+UID of sufficient privilege to allow it to read the file.<P>
+Normally the daemon would be run as user 'nobody', which has permission
+only to read globally accessable files.  In the case where password
+protection is being used, either the daemon must be run under a real
+user ID which has access to all the files, or a dummy account must
+be set up which has membership of the necessary groups.
+<H2>Forwards, Redirections and Queries</H2>The updated protocol allows for a number of additional document types,
+including forwards, redirections and queries.  Forwards tell the client
+that the document has moved perminantly, implying that they should
+update their links.  Redirections tell the client that the link from
+the redirection changes periodically, so they should link to this
+rather than the end document.  Queries contain the reference to a
+query server and the text for that query.  When a client encounters
+a query, it should never link to the query itself, only to the document
+which references the query.<P>
+If the server cannot find the desired document, it looks for files
+with the same name, but the suffix '.f', '.r' or '.q'.  If it finds
+any of these, it returns whatever is the contents of the file as the
+new UDI.  Therefore to create a forward or redirection file, the '.f'
+or '.r' file must only contain the new UDI.<P>
+______________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#11> CTB</A></A>

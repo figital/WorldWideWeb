@@ -1,0 +1,17 @@
+<TITLE>CVSenvvars -- /Project</TITLE>
+<NEXTID 1>Environment Variables
+<H1></H1>CVSROOT	Should contain the full pathname to the root of the cvs source
+repository (where the RCS files are kept). This information must be
+available to cvs for most commands to execute; if CVSROOT is not set,
+or if you wish to override it for one invocation, you can supply it
+on the command line:	'cvs -d cvsroot cvs_command...'<P>
+	You may not need to set CVSROOT if your cvs binary has the right path
+compiled in; use 'cvs -v' to display all compiledin paths.<P>
+CVSREAD	If this is set, checkout and update will try hard to make the
+files in your working directory readonly. When this is not set, the
+default behavior is to permit modification of your working files.<P>
+RCSBIN	Specifies the full pathname where to find RCS programs,such
+as co(1) and ci(1). If not set, a compiledinvalue is used; see the
+display from 'cvs -v'.<P>
+EDITOR	Specifies the program to use for recording log messages during
+commit. If not set, the default is /usr/ucb/vi.

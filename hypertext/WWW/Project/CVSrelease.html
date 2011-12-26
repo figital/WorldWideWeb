@@ -1,0 +1,20 @@
+<TITLE>CVSrelease -- /Project</TITLE>
+<NEXTID 1>
+<H1>release [ dQq] modules...</H1>Requires:	Working directory<P>
+Changes:	Working directory, history log<P>
+This command is meant to safely cancel the effect of 'cvs checkout'.<P>
+Since cvs doesn't lock files, it isn't strictly necessary to use this
+command. You can always simply delete your working directory, if you
+like; but you risk losing changes you may have forgotten, and you
+leave no trace in the cvs history file that you've abandoned your
+checkout.<P>
+Use 'cvs release' to avoid these problems. This command checks that
+no uncommitted changes are present; that you are executing it from
+immediately above, or inside, a cvs working directory; and that the
+repository recorded for your files is the same as the repository defined
+in the module database.<P>
+If all these conditions are true, 'cvs release' leaves a record of
+its execution (attesting to your intentionally abandoning your checkout)
+in the cvs history log.<P>
+You can use the -d flag to request that your working copies of the
+source files be deleted if the release succeeds.

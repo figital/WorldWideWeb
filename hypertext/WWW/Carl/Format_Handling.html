@@ -1,0 +1,61 @@
+<TITLE>Format_Handling -- /WWW</TITLE>
+<NEXTID 1>
+<H1>Format Handling</H1>
+<H2>Introduction</H2>Format handling is the automatic manipulation of documents into a
+format which can be output by the browser.  Where documents are sent
+to the browser in a form it cannot directly display (i.e. in the HTML
+language), they can be dealt with in threeways.  Either they can be
+converted to HTML (or plain text), displayed by an external processing
+agent, or placed in a file.
+<H2>Format Preferences</H2>The preferences screen gives a list of acceptable formats which will
+be sent to the server.  Each entry in the list is of the form:
+<XMP>FORMAT_NAME/FORMAT_PENALTY/FILE_EXTENSIONS/PROCESSING_AGENT/CONVERSION_TO
+
+</XMP>FORMAT_NAME is the name of the format, by which it is recognised when
+sent from the server (e.g. POSTSCRIPT or HTML).<P>
+ FORMAT_PENALTY is not used in the current implementation.<P>
+ FILE_EXTENSIONS is a comma-separated list of '.' extensions by which
+a file may be identified as being in that format.  One of the entries
+in the list may be DEFAULT, which means that if no other extension
+matches, this format is to be used instead.<P>
+PROCESSING_AGENT is the agent which is responsible for the conversion.
+This may have three values, INTERNAL, NONE, or a string.  INTERNAL
+means that the processing of the format is done by the browser software
+itself.  Currently if a format is declared to be INTERNAL, but is
+not in HTML, will be treated as plain text.  NONE means that the browser
+cannot handle the format, the entry is simply for information (to
+know the file extension).  Where the entry is a string, it is taken
+to be the name of the external program to be invoked.  Any external
+processing agent must take it's input from the standard input (e.g.
+crypt), and (where it is not a final format) should ouput to standard
+output.  Note that on non-UNIX platforms this is not allowed (since
+pipes are more difficult to implement). Instead, this is treated as
+INTERNAL.<P>
+CONVERSION_TO is the format to which this will be converted.  It may
+either be another format in the list, ANY, if the format of the result
+cannot be known in advance (e.g. uncompress), or a final format (SCREEN,
+AUDIO, or FILE).  If a conversion is to produce user output and not
+require further conversion, it should be marked as one of these two.
+If the PROCESSING_AGENT is none, then no CONVERSTION_TO needs to be
+specified.  If the CONVERSION_TO is FILE and the PROCESSING_AGENT
+is INTERNAL, then the browser will request a file name and save the
+data to this file.
+<H2>Setting the Format Preferences</H2>The format preferences can only be set in one of two ways, either
+by specifying them in the preferences file, or using the on-screen
+preferences list.  Environment variables and command-line options
+are not available.<P>
+To change an existing entry using the on-screen list, type the number
+letter combination followed by a space, then each entry in turn, separated
+by a '/', e.g.
+<XMP>7i GIF//gif/gifviewer/SCREEN
+</XMP>To delete an entry, simply type the reference number (e.g. 7i).<P>
+The format of the preferences file entry for the format list is:
+<XMP>FORMATS=
+   FORMAT_NAME/FORMAT_PENALTY/FILE_EXTENSION_LIST/PROCESSING_AGENT[/OUTPUT_FORMAT]
+   FORMAT_NAME/FORMAT_PENALTY/FILE_EXTENSION_LIST/PROCESSING_AGENT[/OUTPUT_FORMAT]
+
+	....
+
+
+</XMP>where the first character of each line after the first is a tab.<P>
+______________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#11> CTB</A></A>

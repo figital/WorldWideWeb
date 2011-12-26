@@ -1,0 +1,56 @@
+<TITLE>CVSfiles -- /Project</TITLE>
+<NEXTID 2>
+<H1>CVS Files</H1>For more detailed information on cvs supporting files, see <A NAME=1 HREF=CVSmanag.html>cvs management</A>(5).
+<H2>Files in working directories:</H2>
+<DL>
+<DT>CVS
+<DD>A directory of cvs administrative files. Do not delete.
+<DT>CVS/Entries
+<DD>List and status of files in your working directory.
+<DT>CVS/Entries.Backup
+<DD>A backup of 'CVS/Entries'.
+<DT>CVS/Entries.StaticFlag:
+<DD>do not add more entries on 'cvs update'
+<DT>CVS/Repository
+<DD>Pathname to the corresponding directory in the source
+repository.
+<DT>CVS/Tag
+<DD>Contains the per directory "sticky" tag or date information.
+This file is created/updated when you specify -r or -D to the checkout
+or update commands, and no files are specified.
+<DT>CVS/Checkin.prog
+<DD>Name of program to run on 'cvs commit'.
+<DT>CVS/Update.prog
+<DD>Name of program to run on 'cvs update'.
+</DL>
+
+<H2>Files in source repositories:</H2>
+<DL>
+<DT>$CVSROOT/CVSROOT
+<DD>Directory of global administrative files for repository.
+<DT>CVSROOT/commitinfo,v
+<DD>Records programs for filtering 'cvs commit' requests.
+<DT>CVSROOT/history
+<DD>Log file of cvs transactions.
+<DT>CVSROOT/modules,v
+<DD>Definitions for modules in this repository.
+<DT>CVSROOT/loginfo,v
+<DD>Records programs for piping 'cvs commit' log entries.
+<DT>CVSROOT/rcsinfo,v
+<DD>Records pathnames to templates used during a 'cvs
+commit' operation.
+<DT>CVSROOT/editinfo,v
+<DD>Records programs for editing/validating 'cvs commit'
+log entries.
+<DT>Attic
+<DD>Directory for removed source files.
+<DT>#cvs.lock
+<DD>A lock directory created by cvs when doing sensitive changes
+to the RCS source repository.
+<DT>#cvs.tfl.pid
+<DD>Temporary lock file for repository.
+<DT>#cvs.rfl.pid
+<DD>A read lock.
+<DT>#cvs.wfl.pid
+<DD>A write lock.</A>
+</DL>

@@ -1,0 +1,20 @@
+<TITLE>CVSdiff -- /Project</TITLE>
+<NEXTID 1>
+<H1>[files...] diff [ kl] [rcsdiff_options] [[ r rev1 | -D date1] [
+r rev2 | -D date2]]</H1>Requires:	working directory, repository<P>
+Changes:	nothing.<P>
+You can compare your working files with revisions in the source repository,
+with the 'cvs diff' command. If you don't specify a particular revision,
+your files are compared with the revisions they were based on. You
+can also use the standard cvs command option -r to specify a particular
+revision to compare your files with. Finally, if you use -r twice,
+you can see differences between two revisions in the repository. You
+can also specify -D options to diff against a revision in the past.
+The -r and -D options can be mixed together with at most two options
+ever specified.<P>
+See rcsdiff(1) for a list of other accepted options.<P>
+If you don't specify any files, diff will display differences for
+all those files in the current directory (and its subdirectories,
+unless you use the standard option -l) that differ from the corresponding
+revision in the source repository (i.e. files that you have changed),
+or that differ from the revision specified.

@@ -1,0 +1,22 @@
+<TITLE>(No title)</TITLE>
+<NEXTID 1>
+<H1>Design Notes</H1>
+<H2>From Feb 29 meeting:</H2>
+<UL>
+<LI>Does the mac environment allow malloc()? If not, we have to make a
+malloc().
+</UL>
+<UL>
+<LI>Does a Mac socket() return something which can be used like a file?
+Maybe anyway (for TWG) we have to make a HTStream macro a la NXStream.
+The operation on it would be block read and write.
+<LI>The object-oriented parts of Think-C can't be used within hypercard.
+This suggests use  c++ stand-alone on the Mac or we use just C all
+over,  in OO style.
+<LI>We should get LaTeX manuals, to see about conversion.
+<LI>We must look at Interviews and Andrew.
+<LI>Should we make a portable text object?  If so, should we make itas
+simple as possible, or make it a balanced/structured btree including
+modification items and structured text?  Where do we draw the line?
+</UL>__________________________________________________________
+<ADDRESS><A NAME=0 HREF=../TBL_Disclaimer.html>Tim BL</A>

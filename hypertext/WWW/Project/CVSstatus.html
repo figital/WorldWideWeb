@@ -1,0 +1,17 @@
+<TITLE>CVSstatus -- /Project</TITLE>
+<NEXTID 1>
+<H1>status [ lR] [ v] [files...]</H1>Requires:	working directory, repository<P>
+Changes:	nothing.<P>
+Display a brief report on the current status of files with respect
+to the source repository, including any "sticky" tags, dates, or -k
+options. ("Sticky" options will restrict how 'cvs update' operates
+until you reset them; see the description of 'cvs update A...'.)<P>
+You can also use this command to anticipate the potential impact of
+a 'cvs update' on your working source directory. If you do not specify
+any files explicitly, reports are shown for all files that cvs has
+placed in your working directory. You can limit the scope of this
+search to the current directory itself (not its subdirectories) with
+the standard -l option flag; or you can explicitly request recursive
+status reports with the -R option.<P>
+The -v option causes the symbolic tags for the RCS fileto be displayed
+as well.

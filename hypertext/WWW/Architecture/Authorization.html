@@ -1,0 +1,36 @@
+<TITLE>Authorization -- /Architecture</TITLE>
+<H1>Authorisaztion in the server</H1>The authorization for a HTTP file server running on a unix system
+uses the underlying file protection scheme.<P>
+The user and password registration tools are those of the system,
+so two parallel systems do not have to learned by administrators.<P>
+The daemon may be run under a non-root uid so that it is less prone
+to pose a security problem due to an obscure programming bug.<P>
+The daemon will therefore only have access to certain files by virtue
+of the uid under which it runs.  This will provide a certain security.
+<P>
+The daemon will itself voluntarily refuse access if the rule file
+denies access.<P>
+The daemon is running in secure mode it will require a user/password
+pair for any file which does not  have public read access.  It will
+check that the password is valid, then that the relevant user would
+have access to the file.  Therefore the file must be accessible by
+BOTH the uid under which the daemon runs, and the authorized user.<P>
+Authorized useds may be dummy (non login) users representing groups
+of people.<P>
+Administration<P>
+Every class of user having privileged access will have to be given
+a (dummy) user id on the system using the normal tools.<P>
+Every set of documents requiring a different pattern of access rights
+ should be given a corresponding groups id using the normal tools.<P>
+The many-many mapping of groups to users (traditionally, in the "/etc/groups"
+file) may be used to describe the mapping of the document sets onto
+the dummy users.<P>
+Browser<P>
+The browser maintains a list of server/user/password for each protected
+server that the user has accessed during the session. (Note that the
+first access of a protected document must necessarily fail, and lead
+the browser to putting up a panel requesting the user/password pair.
+As one wants to send the user/password pair only to the correct server,
+the browser should not be so constructed as to contain or ask for
+the triples before actual access).tbl ctb rc
+<ADDRESS></A>

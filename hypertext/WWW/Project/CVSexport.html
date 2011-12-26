@@ -1,0 +1,17 @@
+<TITLE>CVSexport -- /Project</TITLE>
+<NEXTID 1>
+<H1>export [ flNnQq] -r rev| D date [ d dir] module...</H1>Requires:	repository.<P>
+Changes:	current directory<P>
+This command is a variant of 'cvs checkout'; use it when you want
+a copy of the source for module without the cvs administrative directories.
+For example, you might use 'cvs export' to prepare source for shipment
+off site. This command requires that you specify a date or tag (with
+-D or -r), so that you can count on reproducing the source you ship
+to others.<P>
+The only non standard options are ' d dir' (write the source into
+directory dir) and ' N' (don't shorten module paths). These have
+the same meanings as the same options in 'cvs checkout'.<P>
+The -kv option is always set when export is used. This causes any
+RCS keywords to be expanded such that an import done at some other
+site will not lose the keyword revision information. There is no way
+to override this.

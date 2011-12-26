@@ -1,0 +1,173 @@
+<TITLE>HTRESP -- /HTTP</TITLE>
+<NEXTID 1>
+<ADDRESS>Last modified 22/09/92 by CTB
+</ADDRESS>
+<H1>HTRESP</H1>
+<H2>Response types</H2>The syntax of the responses to HTTP requests are as follows:
+<H3>Error</H3>
+<XMP>       RESPONSE="ERROR" HTTPV=VersionNumber CrLf
+       STATUS=String REASON=String [IDENTIFIER=String] CrLf
+       [body section]
+
+</XMP>
+<H3>Forward</H3>
+<XMP>       RESPONSE="FORWARD" HTTPV=VersionNumber CrLf
+       UDI=String CrLf
+       [body section]
+
+</XMP>
+<H3>Redirection</H3>
+<XMP>       RESPONSE="REDIRECTION" HTTPV=VersionNumber CrLf
+       UDI=String CrLf
+       [body section]
+
+</XMP>
+<H3>Query</H3>
+<XMP>       RESPONSE="QUERY" HTTPV=VersionNumber CrLf
+       SERVER=String CrLf
+       [body section]
+       Algorithm
+
+</XMP>
+<H3>Index</H3>
+<XMP>       RESPONSE="INDEX" HTTPV=VersionNumber CrLf
+       [body section]
+
+</XMP>
+<H3>Data</H3>
+<XMP>       RESPONSE="DATA" HTTPV=VersionNumber CrLf
+       [body section]
+
+</XMP>
+<H3>Confirmation</H3>
+<XMP>       RESPONSE="CONFIRMATION" HTTPV=VersionNumber CrLf
+       [body section]
+
+
+</XMP>
+<H2>Body Section</H2>The body section has the following syntax:
+<XMP>       NOTATION=String TOEOF|BYTES=Number [EDITABLE] CrLf
+       [PROFILE KEY=String [DURATION=String]] CrLf
+       [FETCHED=TimeStamp CrLf]
+       ENDHEADER CrLf
+       [data]
+
+</XMP>where the NOTATION string is a list of format transformations which
+must be applied to the 'data' in order to reach the final format in
+the list, e.g.:
+<XMP>        NOTATION="UUDECODE,UNCOMPRESS,PLAINTEXT" BYTES=1000
+
+</XMP>means that if the following1000 bytes of data are UUDECODEd and then
+UNCOMPRESSed, the resulting data will be in PLAINTEXT format.  Therefore
+the 'data' section may not necessarily be in ASCII.<P>
+The PROFILE KEY is an indication by the server that it has cached
+the client's profile (sent as part of the request), and that the client
+need only sent this key, instead of the complete profile.  The DURATION
+is optionally sent by the server to indicate how long the key will
+be valid for.  This will be an estimated relative time.<P>
+Note that the presence of the TOEOF indicator means that the data
+section is of indeterminate length, i.e. the length could not be calculated,
+either because it is the result of some translation process which
+does not allow the server to calculate the length, or because the
+data is being produced by a data sourcing process which may run for
+an indeterminate amount of time.<P>
+The FETCHED field is the data and time that the server retrieved the
+document.  When the browser attempts to PUT a document, this is returned
+to prevent the erasure of any changes made to the document in the
+time between the document being retrieved and being returned.  The
+format of the TimeStamp is DD MM YY HH:MM:SS, and is the local time
+of the server. <P>
+Where the RESPONSE is an ERROR, the STATUS and REASON fields may have
+a number of values, depending upon the situation encountered by the
+server.  These are described below:<P>
+The following STATUS values are allowed:
+<DL>
+<DT>SERVER_ERR
+<DD> Fatal error at the server end, no retry (of the same request)
+possible.
+<DT>CLIENT_ERR
+<DD> Fatal error caused by the client, no retry (of the same
+request) possible.
+<DT>TEMP_ERR
+<DD> Temporary error at server end, retry of same request possible
+after some delay.
+</DL>
+The meanings of the various REASON values change depending on the
+value of STATUS.  Where the STATUS is CLIENT_ERR, the meanings are:
+<DL>
+<DT>AUTH_FAIL
+<DD> The user ID and password supplied do not match any pair
+used by the server. [Should always use AUTH_REFUSED - CTB]
+<DT>AUTH_REFUSED
+<DD> The user does not have authorisation to carry out that
+operation on that document.  This is only used where a password and
+user ID have been supplied.
+<DT>PWD_REQ
+<DD> The operation can only be carried out by an authorised user,
+and no such authorisation was supplied by the client.
+<DT>PROFILEKEY_FAIL
+<DD> The profile key supplied is not valid or no longer
+valid for this server.
+<DT>DOC_UNAVAIL
+<DD> The UDI supplied does not match any file available to
+the server (note that the file could exist, but not be available to
+the server).
+<DT>VERSION_ERR
+<DD> The HTTP version number supplied by the client is higher
+than that being used by the server, and the server cannot handle that
+request.
+<DT>INVALID_COMMAND
+<DD> The user supplied a command which the server does
+not recognise (where the client's protocol version is higher than
+the server's, a VERSION_ERR should be sent instead)
+<DT>FMT_FAIL
+<DD> The document cannot be supplied in any of the formats supplied
+by the user.
+</DL>
+Where the STATUS is SERVER_ERR, the meanings are:
+<DL>
+<DT>AUTH_FAIL
+<DD> The server was unable to authorise the user, even though
+a password and user ID have been supplied.
+<DT>AUTH_REFUSED
+<DD> The server has insufficient privilege to carry out that
+operation, even though the client does (this should only happen if
+the server has been incorrectly set up).
+<DT>VERSION_ERR
+<DD> The HTTP version number supplied by the client is lower
+than that being used by the server, and the server cannot handle that
+request.
+<DT>INVALID_COMMAND
+<DD> The client has sent the server a command which it
+cannot handle, even though it is specified in the protocol version
+that the server is using.
+</DL>
+FWD_FAIL	The server cannot access the information necessary to return
+the forwarding information.	Where the STATUS is TEMP_ERR, the meanings
+are:
+<DL>
+<DT>AUTH_FAIL
+<DD> The server was unable to carry out the authorisation operation
+at the present time due to a temporary failure (such as password file
+being updated by someone else).
+<DT>PROFILE_FAIL
+<DD> The server was unable to access the stored profile information
+at the moment.
+<DT>DOC_UNAVAIL
+<DD> The document requested is temporarily unavailable.
+<DT>SERVER_BUSY
+<DD> The server is unable to process the request at the present
+time. 
+</DL>
+Other combinations of STATUS/REASON are undefined at the moment.<P>
+The field IDENTIFER may be included to identify the scope over which
+the error ranges.  For example, for an authorisation error, the server
+may return a mask for all those files which will generate such an
+error.Implementation Note: Note that in theory the body of an error
+message may be in ANY acceptable format.  However, in order to make
+the implementation of the new browser as simple as possible, it will
+assume only HTML will be contained in these messages.  But since most
+of these will be generated by the server anyway, this isn't such a
+restriction. Note also that the browser will not allow any links in
+an error document to be followed. <P>
+__________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau> RC</A></A>

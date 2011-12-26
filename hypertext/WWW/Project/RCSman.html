@@ -1,0 +1,153 @@
+<TITLE>RCSman -- /Project</TITLE>
+<NEXTID 9>
+<H1>RCS</H1>Introduction to RCS commands<P>
+May 11, 1983<P>
+Description<P>
+The Revision Control System (RCS) manages multiple revisions of text
+files. RCS automates the storing, retrieval, logging, identification,
+and merging of revisions. RCS is useful for text that is revised fre-
+quently, for example programs, documentation, graphics, papers, form
+letters, etc.<P>
+The basic user interface is extremely simple. The novice only needs
+to learn two commands: ci(1L) and co(1L). Ci, short for "check in",
+depo- sits the contents of a text file into an archival file called
+an RCS file. An RCS file contains all revisions of a particular text
+file. Co, short for "check out", retrieves revisions from an RCS file.<P>
+Functions of RCS<P>
+	+	Storage and retrieval of multiple revisions of text. RCS saves all
+old revisions in a space efficient way. Changes no longer destroy
+the original, because the previous revisions remain accessible. Revisions
+can be retrieved according to ranges of revision numbers, symbolic
+names, dates, authors, and states.<P>
+	+	Maintenance of a complete history of changes. RCS logs all changes
+automatically. Besides the text of each revision, RCS stores the author,
+the date and time of check-in, and a log message summariz- ing the
+change. The logging makes it easy to find out what hap- pened to a
+module, without having to compare source listings or having to track
+down colleagues.<P>
+	+	Resolution of access conflicts. When two or more programmers wish
+to modify the same revision, RCS alerts the programmers and prevents
+one modification from corrupting the other.<P>
+	+	Maintenance of a tree of Revisions. RCS can maintain separate lines
+of development for each module. It stores a tree structure that represents
+the ancestral relationships among revisions.<P>
+	+	Merging of revisions and resolution of conflicts. Two separate lines
+of development of a module can be coalesced by merging. If the revisions
+to be merged affect the same sections of code, RCS alerts the user
+about the overlapping changes.<P>
+	+	Release and configuration control. Revisions can be assigned sym-
+bolic names and marked as released, stable, experimental, etc. With
+these facilities, configurations of modules can be described simply
+and directly.<P>
+	+	Automatic identification of each revision with name, revision number,
+creation time, author, etc. The identification is like a stamp that
+can be embedded at an appropriate place in the text of a revision.
+The identification makes it simple to determine which revisions of
+which modules make up a given configuration.<P>
+	+	Minimization of secondary storage. RCS needs little extra space for
+the revisions (only the differences). If intermediate revisions are
+deleted, the corresponding deltas are compressed accordingly.<P>
+Getting Started with RCS<P>
+Suppose you have a file f.c that you wish to put under control of
+RCS. Invoke the check-in command<P>
+ci f.c<P>
+This command creates the RCS file f.c,v, stores f.c into it as revision
+1.1, and deletes f.c. It also asks you for a description. The description
+should be a synopsis of the contents of the file. All later check-in
+commands will ask you for a log entry, which should summarize the
+changes that you made.<P>
+Files ending in ,v are called RCS files ('v' stands for 'versions'),
+the others are called working files. To get back the working file
+f.c in the previous example, use the check-out command<P>
+co f.c<P>
+This command extracts the latest revision from f.c,v and writes it
+into f.c. You can now edit f.c and check it back in by invoking<P>
+ci f.c<P>
+Ci increments the revision number properly. If ci complains with the
+message<P>
+ci error: no lock set by <your login><P>
+then your system administrator has decided to create all RCS files
+with the locking attribute set to 'strict'. In this case, you should
+have locked the revision during the previous check-out. Your last
+check-out should have been<P>
+co -l f.c<P>
+Of course, it is too late now to do the check-out with locking, because
+you probably modified f.c already, and a second check-out would overwrite
+your modifications. Instead, invoke<P>
+rcs -l f.c<P>
+This command will lock the latest revision for you, unless somebody
+else got ahead of you already. In this case, you'll have to negotiate
+with that person.<P>
+Locking assures that you, and only you, can check in the next update,
+and avoids nasty problems if several people work on the same file.
+Even if a revision is locked, it can still be checked out for reading,
+compiling, etc. All that locking prevents is a CHECK-IN by anybody
+but the locker.<P>
+If your RCS file is private, i.e., if you are the only person who
+is going to deposit revisions into it, strict locking is not needed
+and you can turn it off. If strict locking is turned off, the owner
+of the RCS file need not have a lock for check-in; all others still
+do. Turning strict locking off and on is done with the commands<P>
+rcs -U f.c and rcs -L f.c<P>
+If you don't want to clutter your working directory with RCS files,
+create a subdirectory called RCS in your working directory, and move
+all your RCS files there. RCS commands will look first into that directory
+to find needed files. All the commands discussed above will still
+work, without any modification. (Actually, pairs of RCS and working
+files can be specified in 3 ways: (a) both are given, (b) only the
+working file is given, (c) only the RCS file is given. Both RCS and
+working files may have arbitrary path prefixes; RCS commands pair
+them up intelligently).<P>
+To avoid the deletion of the working file during check-in (in case
+you want to continue editing), invoke<P>
+ci -l f.c or ci -u f.c<P>
+These commands check in f.c as usual, but perform an implicit check-out.
+The first form also locks the checked in revision, the second one
+doesn't. Thus, these options save you one check-out operation. The
+first form is useful if locking is strict, the second one if not strict.
+Both update the identification markers in your working file (see below).<P>
+You can give ci the number you want assigned to a checked in revision.
+Assume all your revisions were numbered 1.1, 1.2, 1.3, etc., and you
+would like to start release 2. The command<P>
+ci -r2 f.c or ci -r2.1 f.c<P>
+assigns the number 2.1 to the new revision. From then on, ci will
+number the subsequent revisions with 2.2, 2.3, etc. The corresponding
+co commands<P>
+co -r2 f.c and co -r2.1 f.c<P>
+retrieve the latest revision numbered 2.x and the revision 2.1, respectively.
+Co without a revision number selects the latest revision on the "trunk",
+i.e., the highest revision with a number consisting of 2 fields. Numbers
+with more than 2 fields are needed for branches. For example, to start
+a branch at revision 1.3, invoke<P>
+This command starts a branch numbered 1 at revision 1.3, and assigns
+the number 1.3.1.1 to the new revision. For more information about
+branches, see rcsfile(5L).<P>
+Automatic Identification<P>
+RCS can put special strings for identification into your source and
+object code. To obtain such identification, place the marker<P>
+$Header$<P>
+into your text, for instance inside a comment. RCS will replace this
+marker with a string of the form<P>
+$Header: filename revision_number date time author state $<P>
+With such a marker on the first page of each module, you can always
+see with which revision you are working. RCS keeps the markers up
+to date automatically. To propagate the markers into your object code,
+simply put them into literal character strings. In C, this is done
+as follows:<P>
+static char rcsid[] = "$Header$";<P>
+The command ident extracts such markers from any file, even object
+code and dumps. Thus, ident lets you find out which revisions of which
+modules were used in a given program.<P>
+You may also find it useful to put the marker $Log$ into your text,
+inside a comment. This marker accumulates the log messages that are
+requested during check-in. Thus, you can maintain the complete history
+of your file directly inside it. There are several additional identification
+markers; see co(1L) for details. RCS(1L)<P>
+<A NAME=1 HREF=RCSrcs.html>rcs</A> - change RCS file attributes<P>
+<A NAME=2 HREF=RCSco.html>co</A> - check out RCS revisions<P>
+<A NAME=3 HREF=RCSci.html>ci</A> - check in RCS revisions<P>
+<A NAME=4 HREF=RCSident.html>ident</A> - identify files<P>
+<A NAME=5 HREF=RCSdiff.html>rcsdiff</A> - compare RCS revisions<P>
+<A NAME=6 HREF=RCSmerge.html>rcsmerge</A> - merge RCS revisions<P>
+<A NAME=7 HREF=RCSrlog.html>rlog</A> - print log messages and other information about RCS files<P>
+<A NAME=8 HREF=RCSrcsfile.html>rcsfile</A> - format of RCS file</A>

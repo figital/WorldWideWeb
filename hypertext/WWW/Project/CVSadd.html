@@ -1,0 +1,39 @@
+<TITLE>CVSadd -- /Project</TITLE>
+<NEXTID 1>
+<H1>add [ k kflag] [ m 'message'] files...</H1>Requires:	repository, working directory<P>
+Changes:	working directory<P>
+Synonym:	new<P>
+Use the add command to create a new file or directory in the RCS source
+repository. The files or directories specified with add must already
+exist in the current directory (which must have been created with
+the checkout command). To add a whole new directory hierarchy to the
+source repository (for example, files received from a third party
+vendor), use the 'cvs import' command instead.<P>
+If the argument to 'cvs add' refers to an immediate subdirectory,
+the directory is created at the correct place in the RCS source repository,
+and the necessary cvs administration files are created in your working
+directory. If the directory already exists in the source repository,
+'cvs add' still creates the administration files in your version of
+the directory. This allows you to use 'cvs add' to add a particular
+directory to your private sources even if someone else created that
+directory after your checkout of the sources. You can do the following:<P>
+mkdir new_director<P>
+cvs add new_directory<P>
+cvs update new_directory<P>
+An alternate approach using 'cvs update' might be:<P>
+cvs update -d new_director<P>
+(To add any available new directories to your working directory, it's
+probably simpler to use 'cvs checkout' or 'cvs update -d'.)<P>
+The added files are not placed in the RCS source repository until
+you use 'cvs commit' to make the change permanent. Doing a 'cvs add'
+on a file that was removed with the 'cvs remove' command will resurrect
+the file, if no 'cvs commit' command intervened.<P>
+You will have the opportunity to specify a logging message, as usual,
+when you use 'cvs commit' to make the new file permanent. If you'd
+like to have another logging message associated with just creation
+of the file (for example, to describe the file's purpose), you can
+specify it with the ' m message' option to the add command.<P>
+The ' k kflag' option specifies the default way that this file will
+be checked out. The 'kflag' argument isstored in the RCS file and
+can be changed with 'cvsadmin'. Specifying ' ko' is useful for checking
+in binaries that shouldn't have the RCS id strings expanded.<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau> RC</A>

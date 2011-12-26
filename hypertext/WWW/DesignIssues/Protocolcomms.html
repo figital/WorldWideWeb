@@ -1,0 +1,50 @@
+<TITLE>Handling protocol version mismatches</TITLE>
+<NEXTID 3>
+<H1>Communicating with different versions of HTTP</H1>
+<h2>One way:</h2>
+Let "IT" be either the browser, sending a request,  or the server
+sending a document, and let "ME" be the server getting a request or
+the browser receiving a document.<P>
+ME  will find in the received data the number v(IT) of the HTTP version
+used by IT. If this number is different from the version v(ME) it
+uses itself, then:
+<DL>
+<DT>v(ME) = v(IT)
+<DD>No problem.
+<DT>v(ME) = v(IT)+1:
+<DD> ME should downgrade to the previous version, which
+ME is supposed to know. IT will bring the problem to the attention
+of its user (but see <A NAME=2 HREF=ProtocolProblems.html#1>silencing</A> )
+<DT>v(ME) > v(IT)+1
+<DD> An alert is given to the user of ME. No further communication
+can proceed.
+</DL>
+All features of HTTP version n and n-1 are always implemented. To
+implement downgrading, it is sufficient to keep a list of flags. In
+fact, a set of such lists could be used to downgrade several levels
+back, but this should not be done.<P>
+<h2>Another way:</h2>
+[Tim] This came out of rpc project thinking on version upgrade
+ for client and server software modules which never
+made it into the software  but seemed to cover the needs,
+and would have solved some real problems in a large distributed system.
+<p>
+Suppose there is a sequence of versions. For each new version,
+the changes may make a server of that version incompatible
+with earlier clients before a certain version.
+<p>Similarly but independently, a client of the new version may or
+may not be compatible with servers of earlier versions.
+<p>
+There is a sort of cross-compatibility map but you can simplify it
+by assuming that if you are incompatible with old version V then you
+ are also incompatible with old versions <V.
+Your incompatibility is then summed up by:
+Your current version V(you) and the earliest version of it which you can
+tolerate Vmin(it).  To do the compatibility check in one
+go, the requester sends over its two numbers V(c) and VMin(s).
+The server has the two numbers V(s) and VMin(c).
+The server then checks that V>=Vmin for both s and c and if so all is fine.
+<p>
+This leaves open still the possibility of saying "Please rephrase that".
+Note I am sticking to the single request-reply model always for speed.
+<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau>RC</A></A>

@@ -1,0 +1,28 @@
+<TITLE>Problems to be solved in HTTP V2 upgrade</TITLE>
+<NEXTID 3>
+<H1>Problems to Solve</H1>
+<H3>Version number communication</H3>I would like the version number to be communicated at the start of
+every request and every reply. [The communication is forseen for te
+request. Putting it in the reply would have to mean "I realise your
+request is v4 but I am doing my best to interpret it as a v2 request".
+An alternative is to reply "Sorry, please rephrase your request in
+V2 HTTP" -TBL]
+<H3><A NAME=1>Upgrade requests</A></H3>A browser or server that uses an out of date version of HTTP will
+notice this when communicating with ones that use newer versions.
+A request to upgrade can be sent automatically to the user. These
+requests must not disturb the user, so there must be an option to
+save them on a file or to silence them, once they have been noted.
+[Or maybe just reduce them to once a week :-) ]
+<H3><A NAME=2>More flexible arguments</H3>Arguments eg. to GET should be quoted, so that spaces and quotes in
+them are allowed. This may be especially useful for lists of keywords,
+which may evolve into lists of commands etc. [Whatever delimiter we
+use must be escaped. Currently, spaces are converted into + signs,
+which in turn have to be escaped. The escaping function should be
+general thoughout W3 as it is needed whenever we convert between different
+ranges of allowed character sets. Beware of getting into a mess with
+this a la VMS. You have to know exactly when something is officially
+escaped and when it is not, so that you can reverse any mapping, quoting,
+escaping, the right number of times!] Quotes around strings and doubling
+quotes to signify embedded ones seems to be perfectly reversible.</A><P>
+<P>
+<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#Cailliau> RC</A>

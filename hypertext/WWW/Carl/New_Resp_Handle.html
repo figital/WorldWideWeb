@@ -1,0 +1,21 @@
+<TITLE>New_Resp_Handle -- /WWW</TITLE>
+<NEXTID 2>
+<H1>Handling New Response Types</H1>The protocol which the browser uses to retrieve documents from a server
+has been expanded to allow different types of repsonses, apart from
+simple documents.  These responses include errors and forwards.<P>
+An error is returned by a server if it encounters a situation it cannot
+handle.  A forward is returned if the document requested no longer
+exists at that location, and the server knows where the new location
+is.<P>
+When an error response is returned, the browser gives you the option
+to CANCEL the request, in which the text returned in the message is
+thrown away.  However, on some errors, and on all forwards, the browser
+may also give you the option to PROCEED.  In the case of errors, PROCEEDing
+tells the browser to attempt to reformulate the request in an attempt
+to prevent the same error occuring.  This may mean requesting data,
+such as passwords, from you.  In the case of forwards, the browser
+sends the request to the new location.<P>
+Where the PROCEED option is available, the browser can handle the
+entire operation of <A NAME=1>retrying automatically</A> , if the preference AUTORETRY
+is set to YES.  <P>
+______________________________________________________<A NAME=0 HREF=http://info.cern.ch/hypertext/WWW/People.html#11> CTB</A></A>

@@ -1,0 +1,128 @@
+<TITLE>Updating_LM -- /WWW</TITLE>
+<NEXTID 8>
+<H1>Installing the Latest Version of LineMode Browser</H1>Update <A NAME=2 HREF=../../README.html>README</A> .  See also:<A NAME=6 HREF=Defaults/QuickGuide.html> LM User guide</A> , <A NAME=5 HREF=../Administration/Overview.html>administration overview</A>
+.<P>
+Things to do in general:
+<DL>
+<DT>Test it
+<DD> Test it on one system!
+<DT>Compile on all systems
+<DD> Compile it on each system as below. In WWW/LineMode/xxx,
+type "make lib" then "make".
+<DT>Note changes
+<DD> Note any changes in the <A NAME=7 HREF=Defaults/Features.html>change history</A> .
+<DT>Binaries for FTP
+<DD> On nxoc01, in WWW/LineMode/xxx, type 'make binary"
+for EACH machine xxx which has a binary already. (Check with make
+-n binary first that the binary is up to date)
+<DT>Sources for FTP
+<DD> On nxoc01, under /WWW/Library and separately under
+WWW/LineMode/src, first check the Makefile that any new files have
+been included (including line mode documentation), then type "make
+distribute".
+<DT>ASIS release
+<DD> On ASIS, do <A NAME=3 HREF=Updating_LM/ASIS.html>ASIS installation</A> .
+<DT>Release number
+<DD> Increment .../Implementation/Version.make by a suitable
+amount for each project.
+</DL>
+Things to do on each system follow.  Use the directory hypertext/WWW/PROJECT/MACHINE/
+where hypertext is a soft link to the remote mounted cernvax:/userd/tbl/hypertext.
+<H2>Sun4</H2>
+<DL>
+<DT>host
+<DD> asis01, (or lhctb01)
+</DL>
+
+<H2>RS6000</H2>
+<DL>
+<DT>host:
+<DD> bernd
+</DL>
+
+<H2>Apollo M68k</H2>
+<DL>
+<DT>host
+<DD> cernapo (to build), apocern1 (to test).
+<DT>notes :
+<DD> Make copy of .html files.  The source tree is not currently
+read-wrire (why?)
+</DL>
+
+<H2>DECStation</H2>
+<DL>
+<DT>host
+<DD> dxcern (use your own account)
+</DL>
+
+<H2>Silicon Graphics (SGI)</H2>
+<DL>
+<DT>host
+<DD> sgpaw
+</DL>
+
+<H2>NeXT</H2>
+<DL>
+<DT>host
+<DD> nxoc01.   
+<DT>Notes
+<DD>Imake.tmpl semms to lack /usr/include/X11. 
+</DL>
+
+<H2>Snake</H2>
+<DL>
+<DT>Host
+<DD> hncnhr
+<DT>Notes
+<DD>Imake screwed.
+</DL>
+
+<H2>VMS/UCX</H2>
+<DL>
+<DT>host
+<DD> online (user name tim)
+<DT>directory :
+<DD> disk$oc1:[timbl.www.ucx]
+</DL>
+
+<H3>commands :</H3>make descrip.ms<P>
+make /macro=(U=DXCERN::) descrip.mms<P>
+make /macro=(U=DXCERN::) version.make<P>
+mms /macro=(UCX=1, U=DXCERN::) update<P>
+copy www.exe and setup.com to disk$tim:[tim.www.works] for use on
+ONLINE::
+<H2>VMS/Multinet</H2>
+<DL>
+<DT>host
+<DD> vxcrna
+<DT>directory :
+<DD> disk$oc1:[timbl.www.multinet]
+</DL>
+
+<H3>commands :</H3>make /macro=(U=DXCERN::) descrip.mms<P>
+make /macro=(U=DXCERN::) version.make<P>
+make /macro=(MULTINET=1, U=DXCERN::)
+<H3>notes :</H3>Mail system manager to inform that a new version is available.<P>
+On nxoc01,  FTP  both multinet and ucx  .EXE files for tar file and
+anaonymous FTP. FTP them into /pub/www/bin/vms/multinet (or ucx) in
+binary mode. Don't use decnet, it seems to corrupt them.
+<H2>VAX /Ultrix</H2>host:	 - none -<P>
+directory :	 /userd/tbl/hypertext/../vax_ultrix<P>
+commands :	 make update
+<H2>VM/XA</H2>Make copies of all .c and .h files and then ftp across the latest
+versions from PRIAM
+<DL>
+<DT>host
+<DD> cernvm
+<DT>directory
+<DD> tim 191
+</DL>
+
+<H3>commands :</H3>setup<P>
+gime TCPMNT 582<P>
+cc_all
+<H3>notes :</H3>For setting the environment use <P>
+GLOBALV SELECT CENV SET  WWW_HOME http://......<P>
+but beware the coersion into upper case! (solution?)
+<ADDRESS><A NAME=1 HREF=People.html#Pellow>NP</A></A>
+</ADDRESS>

@@ -1,0 +1,30 @@
+<TITLE>CVStag -- /Project</TITLE>
+<NEXTID 1>
+<H1>tag [ lQqR] [ b] [ d] symbolic_tag [files...]</H1>Requires:	working directory, repository<P>
+Changes:	repository.<P>
+Synonym:	freeze<P>
+Use this command to assign symbolic tags to the nearest repository
+versions to your working sources. The tags are applied immediately
+to the repository, as with rtag, but the versions are supplied implicitly
+by the cvs records of your working files' history rather than applied
+explicitly.<P>
+One use for tags is to record a "snapshot" of the current sources
+when the software freeze date of a project arrives. As bugs are fixed
+after the freeze date, only those changed sources that are to be part
+of the release need be retagged.<P>
+The symbolic tags are meant to permanently record which revisions
+of which files were used in creating a software distribution. The
+checkout and update commands allow you to extract an exact copy of
+a tagged release at any time in the future, regardless of whether
+files have been changed, added, or removed since the release was tagged.<P>
+If you use 'cvs tag -d symbolic_tag...', the symbolic tag you specify
+is deleted instead of being added.<P>
+Warning:	Be very certain of your ground before you delete a tag; doing
+this effectively discards some historical information, which may later
+turn out to have been valuable.<P>
+The -b option makes the tag a "branch" tag, allowing concurrent, isolated
+development. This is most useful for creating a patch to a previously
+released software distribution.<P>
+Normally, tag executes recursively through subdirectories; you can
+prevent this by using the standard -l option, or specify the recursion
+explicitly by using R.

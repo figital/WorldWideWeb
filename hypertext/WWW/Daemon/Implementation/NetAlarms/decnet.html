@@ -1,0 +1,115 @@
+Program RESPONSIBLE^. J.N. Gamble  ^BGROUP^. CN/CS  ^BTele.^. 3105 
+>mpmon:No response from <1> : CERNR1 *
+
+This is one of the CERN level 2 DECNET routers. If this is DOWN then
+DECnet communication may be lost to Spain, UK and Nordunet.
+
+                   This is an Important Node
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>mpmon:No response from <1> : CERNR2 *
+
+This is one of the CERN level 2 DECNET routers. If this is DOWN then
+DECnet communication may be lost to France and Switzerland.
+
+                   This is an Important Node
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>mpmon:No response from <1> : CERNIT *
+
+This the CERN level 2 DECNET router for ITALY (INFN). If this is DOWN then
+DECnet communication may be lost to Italy.
+
+                   This is an Important Node
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>mpmon:No response from <1> : CERNFR *
+
+This the CERN level 2 DECNET router for FRANCE (SACLAY,IN2P3). If this is 
+DOWN then DECnet communication may be lost to France.
+
+                   This is an Important Node
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>mpmon:No response from DNCP : <1> *
+
+One of the central machines (<1>) is no longer responding to DECnet NCP 
+commands. The state of this computer needs to be verified.
+
+                   <1> is an Important Node
+
+>dlimon:DECNET no area information from <1>
+The DECNET router <1> does not respond to management requests. Its state is 
+therefore unknown. Currently there is a problem with the router software 
+and this occurs frequently. However the router may be genuinly broken so see 
+the documentation for more information on the procedures to follow.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>dlimon:DECNET circuit <1> on router <2> *
+The external line <1> connected to our on site router <2> is no longer
+operational. These lines connect CERN with external DECNET, some have automatic
+backup and some do not. If the state is DOWN then the situation is unforseen.
+If the state is OFF then the circuit has been switched off manually.
+
+The following circuits have backup routes and if an alarm is displayed it 
+generally means there is a degradation in DECnet service to the country listed:
+
+        INFN            (main circuit to Italy)
+        USA             (main circuit to USA)
+        X25-CH          (main circuit to Switzerland)
+        X25-IN2P3       (main circuit to France)
+
+The following circuits have NO backup route and if an alarm is displayed
+it means that DECnet connectivity to the country listed is lost:
+
+        X25-SPAIN       (only circuit to Spain)
+        X25-NORDUNET    (only circuit to Scandanavian countries)
+        X25-UK          (only circuit to UK)
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>dlimon:DECNET area <1> <2> *
+This indicates that all DECNET connections to area <1> have been lost
+and that this area <2> is no longer reachable. This message will appear
+if external circuits go down to areas with no backup routes.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>gwmon:DNCP Gateway CERNR1 *
+
+This is one of the CERN level 2 DECNET routers. If this is DOWN then
+DECnet communication may be lost to Spain, UK and Nordunet.
+
+                   This is an Important Node^.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>gwmon:DNCP Gateway CERNR2 *
+
+This is one of the CERN level 2 DECNET routers. If this is DOWN then
+DECnet communication may be lost to France and Switzerland.
+
+                   This is an Important Node^.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>gwmon:DNCP Gateway CERNIT *
+
+This the CERN level 2 DECNET router for ITALY (INFN). If this is DOWN then
+DECnet communication may be lost to Italy.
+
+                   This is an Important Node^.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)
+
+>gwmon:DNCP Gateway UXINFN *
+
+This a DECNET router for ITALY (INFN). If this is DOWN then
+the backup DECnet communication may be lost to Italy.
+
+Contact (working hours) D. Heagerty (4975) + NETOPS (3348)

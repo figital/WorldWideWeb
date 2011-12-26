@@ -1,0 +1,47 @@
+<TITLE>CVSimport -- /Project</TITLE>
+<NEXTID 1>
+<H1>import [ options] repository vendortag releasetag...</H1>Requires:	Repository, source distribution directory<P>
+Changes:	repository.<P>
+Use 'cvs import' to incorporate an entire source distribution from
+an outside source (e.g., a source vendor) into your source repository
+directory. You can use this command both for initial creation of a
+repository, and for wholesale updates to the module form the outside
+source.<P>
+The repository argument gives a directory name (or a path to a directory)
+under the CVS root directory for repositories; if the directory did
+not exist, import creates it.<P>
+When you use import for updates to source that has been modified in
+your source repository (since a prior import), it will notify you
+of any files that conflict in the two branches of development; use
+'cvs checkout j' to reconcile the differences, as import instructs
+you to do.<P>
+By default, certain file names are ignored during 'cvs import':	names
+associated with CVS administration, or with other common source control
+systems; common names for patch files, object files, archive files,
+and editor backup files; and other names that are usually artifacts
+of assorted utilities. Currently, the default list of ignored files
+includes files matching these names:<P>
+RCSLOG RCS SCCS<P>
+CVS* cvslog.*<P>
+tags TAGS<P>
+*~ #* .#* ,*<P>
+*.old *.bak *.orig *.rej .del *<P>
+*.a *.o *.Z *.elc *.ln core<P>
+The outside source is saved in a first level RCS branch, by default
+'1.1.1'. Updates are leaves of this branch; for example, files from
+the first imported collection of source will be revision '1.1.1.1',
+then files from the first imported update will be revision '1.1.1.2',
+and so on.<P>
+At least three arguments are required. repository is needed to identify
+the collection of source. vendor tag is a tag for the entire branch
+(e.g., for '1.1.1'). You must also specify at least one release tag
+to identify the files at the leaves created each time you execute
+'cvs import'.<P>
+Three of the standard cvs command options are available:	Q, -q, and
+-m message. If you do not specify  logging message with -m, your editor
+is invoked (as with commit) to allow you to enter one.<P>
+There are two additional special options.<P>
+Use ' b branch' to specify a first level branch other than '1.1.1'.<P>
+Use ' I name' to specify file names that should be ignored during
+import. You can use this option repeatedly. To avoid ignoring any
+files at all (even those ignored by default), specify ' I !'.

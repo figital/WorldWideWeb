@@ -1,0 +1,48 @@
+<TITLE>Updating the hypertext lists of newsgroups</TITLE>
+<NEXTID 4>
+<H1>Updating the Newsgroup lists</H1>To update some of the news pages automatically you must be logged
+on to the news server or have the news directories mounted.<P>
+ Carl mentioned that you must be a member of the UNIX group news (otherwise
+you won't have permission to read the news directories) but that doesn't
+seem to be necessary for these functions.
+<H2><A NAME=0 HREF=UpgateGroups>UpdateGroups</A></H2>This script updates the list of newsgroups. For the <A NAME=1 HREF=../../../DataSources/News/Groups/Overview.html>overview list</A>
+, it saves everything before the "Others" heading, and adds on a list
+of pointers to newsgroup stems not already mentioned in the saved
+hypertext.<P>
+For each stem, it saves any command before the glossary list of groups,
+and then regenerates that list of groups.
+<H2><A NAME=2 HREF=NewsPage_Update>NewsPage_Update</A> (old)</H2>The script NewsPage_Update creates complete lists of active groups
+for the following groups: alt, bionet, bit, biz, cern, ch, comp, eunet,
+gnu, news, rec, sci, soc, talk, vmsnet. It does this by writing the
+header in explicitly for each group, and then generating a list of
+of subgroups using FindGroups<P>
+For comp and news, a full list is placed in fullcomp.html and fullnews.html.
+ The files comp.html and news.html are formatted by hand already,
+and so are not touched by the script.<P>
+NewsPage_Update works by writing some HTML text into a file for each
+group to be updated, called [newsgroup_name].html.new, then calling
+the script FindNewsGroups.  This checks the file /usr/local/lib/news/newsgroups
+for the groups within the current group which are active.  Finally
+the new file is renamed to remove the .new.<P>
+The list of stems to search, and their titles and any other comment
+is hardcoded into the NewsPage_Update script, and the list is DUPLICATED
+in Others_Update.
+<H2><A NAME=3 HREF=Others_Update>Others_Update</A></H2>The Others_Update script finds stems which are not included in the
+Overview.html file, but which are active.  This list of which groups
+not to include is hardcoded into the script.  For each group, it calls
+GrpCreate.  This adds the name to OtherGroups/Overview.    It then
+runs FindNewsGroups for each group.
+<H3>NOTE</H3>Once the script has completed all the .new groups must be renamed
+manually to remove the .new extension.
+<H2>GrpCreate</H2>This reads a newsgroup stem name from stdin.<P>
+It then creates the top of a file for the list of groups with that
+stem. This will be called ${nn}.html.new. where ${nn} is the stem
+name. Unfortunately there is no way to get a description of the stem
+to include in this file. However, if the .html fie already exists,
+it will use everything up to an excluding the first DL tag from the
+.html file for the .html.new file. Therefore, everything above the
+DL tag may be hand edited.<P>
+GrpCreate adds a pointer from OtherGroups/Overview.html.new to the
+.html file.<P>
+The .html file is renamed .html.old, and teh .html.new becomes .html,
+with diffs being stored in a .diffs file under the date.</A>

@@ -1,0 +1,19 @@
+<TITLE>DebugServer -- /User</TITLE>
+<NEXTID 4>
+<H1>Running under shell</H1>You don't have to run the daemon under the inted if it doesn't work.
+You can run it from a shell session.<P>
+If the daemon is httpd, then run it from your terminal, with a different
+port number like 8000.  You use <A NAME=2 HREF=CommandLine.html#12>the -a option</A> . 
+<XMP>		httpd -v a \*:8000
+
+</XMP>Note: You must be root (under VMS, have some privilege) to run with
+a port number below 1024. You can't use a port number which has been
+used by a daemon process recently, so you may have to switch port
+number if you ^C and restart the daemon.When it is running like this,
+you can read the trace messages and use a debugger on it if necessary.
+ (See also: <A NAME=3 HREF=TelnetToServer.html>telnetting to the server</A>)<P>
+If the server is a shell script "myserver", try just running it with
+the terminal and typing GET /documentname into its stdin.<P>
+_________________________________________________________________
+<ADDRESS><A NAME=0 HREF=http://info.cern.ch./hypertext/TBL_Disclaimer.html>Tim BL</A>
+</ADDRESS>

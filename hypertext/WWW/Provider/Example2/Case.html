@@ -1,0 +1,74 @@
+<TITLE>Case -- /Example2</TITLE>
+<NEXTID 2>
+<H1>The multiple selection</H1>Here's an example of a <A NAME=1 HREF=../RadioButtons.html>multiple selection</A> problem from Gary S. Wagman.
+<XMP>> So here's my dynamic list situation: The user
+> chooses option PARTICLE. Then chooses EASY. A list is presented that looks
+> like:
+> 
+> Press "X" to select; "H" for help.
+> 
+> _  GAUGE AND HIGGS BOSONS
+> _  LIGHT UNFLAVORED MESONS
+> _  OTHER LIGHT UNFLAVORED MESONS
+> _  STRANGE MESONS
+> _  CHARMED MESONS
+> _  CHARMED STRANGE MESONS
+> _  BOTTOM MESONS
+> _  b bbar MESONS
+> _  NON-q qbar CANDIDATES
+> _  HEAVY QUARK SEARCHES
+> _  N BARYONS
+> _  Delta BARYONS
+> _  Lambda BARYONS
+> _  Sigma BARYONS
+> _  Xi BARYONS
+> _  Omega BARYONS
+> _  CHARMED BARYONS
+> _  BOTTOM (BEAUTY) BARYON
+> _  SEARCHES FOR FREE QUARKS, MONOPOLES, SUPERSYMMETRY, COMPOSITENESS, ETC.
+> 
+> 
+> Suppose they then put an X in Omega BARYONS and BOTTOM (BEAUTY) BARYON. The
+> user then sees:
+> 
+> Press "X" to select; "H" for help.
+> 
+> _  Omega-
+> _  Omega(2250)-
+> _  Omega(2380)-
+> _  Omega(2470)-
+> _  Lambda(b)0
+> 
+> Suppose they next put an X in Omega- and Lambda(b)0, they now get another
+> menu:
+> 
+> Use up/down arrows to move the cursor; RETURN key to select; "H" key for help.
+> 
+> WHAT WOULD YOU LIKE FROM THE PARTICLE(S) YOU HAVE SELECTED?
+> 
+> ALL         The complete Full Listings for the particle(s) selected.
+> HEADER      Particle name, quantum numbers, and general comments.
+> DECAYS      Decay modes, constrained fit information, and fit correlation
+>             matrices.
+> REFERENCES  Publication names, authors, institutions, and reported quantum
+>             numbers.
+> PROPERTY    To select particular properties from particles already selected
+>             (e.g. some mass(es), some branching ratio(s), etc.).
+> CLASS       To select properties by class (e.g. the mass, the decay
+>             parameters, etc. in all particles already selected).
+> 
+> 
+> PREVIOUS    To return to the previous menu. (PF3)
+> EXIT        To leave this program. (PF4)
+> 
+> When they make a selection from this menu, the program queries based on the
+> MULTIPLE particles that may have been chosen. From what I remember seeing in
+> WWW, multiple choices are made be typing in item numbers. For a lot of
+> particles (which may have been shown on many previous screens to which they
+> cannot scroll backwards), the user would tediously have to type in a lot of
+> numbers. (Actually, my program runs in this "tedious mode" for users on really
+> DUMB terminals.) In VT-mode, my users just type an "X" for the items they want
+> and can scroll forward and backward.
+> 
+
+</XMP>
